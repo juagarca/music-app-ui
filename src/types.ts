@@ -4,4 +4,10 @@ interface Artist {
   birthday: string;
 }
 
-export type { Artist };
+interface Favourite {
+  id: string;
+  artistId: string;
+  userId: string;
+}
+
+export type { Artist, Favourite };

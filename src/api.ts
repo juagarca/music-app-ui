@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { Artist } from "./types";
+import { Artist, Favourite } from "./types";
 
 const fetchArtists = async () => {
   const response = await axios.get<Artist[]>("http://localhost:8000/artists");
@@ -8,4 +8,12 @@ const fetchArtists = async () => {
   return response.data;
 };
 
-export { fetchArtists };
+const fetchFavourites = async (userId: string) => {
+  const response = await axios.get<Favourite[]>(
+    `http://localhost:8000/favourites?userId=${userId}`
+  );
+
+  return response.data;
+};
+
+export { fetchArtists, fetchFavourites };
