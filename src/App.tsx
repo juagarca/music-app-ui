@@ -1,17 +1,15 @@
-import styled from 'styled-components';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import { Artists } from './screens';
 
-function App() {
+const App = () => {
   return (
-    <Title>
-      Hello World
-    </Title>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Artists />} />
+      </Routes>
+    </Router>
   );
-}
-
-export const Title = styled.div`
-  color: ${props => props.theme.colors.secondary};
-`;
-
+};
 
 export default App;
