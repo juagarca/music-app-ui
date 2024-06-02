@@ -16,4 +16,11 @@ const fetchFavourites = async (userId: string) => {
   return response.data;
 };
 
-export { fetchArtists, fetchFavourites };
+const addFavourite = async (artistId: string, userId: string) => {
+  return await axios.post(`http://localhost:8000/favourites/create`, {
+    artistId: artistId,
+    userId: userId,
+  });
+};
+
+export { fetchArtists, fetchFavourites, addFavourite };
