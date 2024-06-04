@@ -1,7 +1,11 @@
 interface Artist {
-  id: string;
-  name: string;
-  birthday: string;
+  _id: string;
+  artistName: string;
+  name?: string;
+  dateOfBirth?: Date;
+  placeOfBirth?: string;
+  bio?: string;
+  members: string[];
 }
 
 interface Favourite {

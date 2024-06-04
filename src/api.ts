@@ -2,6 +2,14 @@ import axios from "axios";
 
 import { Artist, Favourite } from "./types";
 
+const fetchArtist = async (artistId: string) => {
+  const response = await axios.get<Artist>(
+    `http://localhost:8000/artists/${artistId}`
+  );
+
+  return response.data;
+};
+
 const fetchArtists = async () => {
   const response = await axios.get<Artist[]>("http://localhost:8000/artists");
 
@@ -23,4 +31,4 @@ const addFavourite = async (artistId: string, userId: string) => {
   });
 };
 
-export { fetchArtists, fetchFavourites, addFavourite };
+export { fetchArtist, fetchArtists, fetchFavourites, addFavourite };

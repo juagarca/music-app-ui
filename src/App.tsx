@@ -1,13 +1,15 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import { Artists, Favourites } from './screens';
+import { Artists, Artist } from './screens';
+
+import ROUTES from './routes';
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Artists />} />
-        <Route path="/favourites" element={<Favourites />} />
+        <Route path={ROUTES.artist} element={<Artist />} />
+        <Route path={ROUTES.artists} element={<Artists />} />
       </Routes>
     </Router>
   );
