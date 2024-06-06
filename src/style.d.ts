@@ -5,9 +5,18 @@ declare module "styled-components" {
     borderRadius: string;
 
     colors: {
+      black: string;
+      darkGray: string;
+      darkGreen: string;
+      green: string;
+      lightGray: string;
       white: string;
-      text: string;
-      background: string;
+    };
+
+    screenBreakpoints: {
+      tablet: string;
+      laptop: string;
+      desktops: string;
     };
   }
 }

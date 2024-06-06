@@ -1,12 +1,21 @@
 import { DefaultTheme } from "styled-components";
 
 const theme: DefaultTheme = {
-  borderRadius: "5px",
+  borderRadius: "50px",
 
   colors: {
+    black: "#181818",
+    darkGray: "#21272B",
+    darkGreen: "#2B8243",
+    green: "#74C991",
+    lightGray: "#EFF0F1",
     white: "#FFFFFF",
-    text: "#C7C7C7",
-    background: "#EFF0F1",
+  },
+
+  screenBreakpoints: {
+    tablet: "480px",
+    laptop: "768px",
+    desktops: "1024px",
   },
 };
 
