@@ -1,13 +1,23 @@
 import styled from "styled-components";
 
 import Button from "./Button";
+import { Magnifier } from "../icons";
+
+import ROUTES from "../routes";
 
 const SearchForm = () => {
   return (
-    <Form action="/" accept-charset="UTF-8" method="get">
+    <Form action={ROUTES.artists} accept-charset="UTF-8" method="get">
       <InputWrapper>
-        <Input type="text" name="search[query]" id="search-query" />
-        <Button label="Search" />
+        <Input
+          type="text"
+          name="query"
+          id="search-query"
+          placeholder="Type an artist name"
+        />
+        <Button>
+          <Magnifier />
+        </Button>
       </InputWrapper>
     </Form>
   );
@@ -20,25 +30,26 @@ const InputWrapper = styled.div`
 
   button {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 10px;
+    right: 12px;
   }
 `;
 
 const Input = styled.input`
-  height: 2.5rem;
+  height: 3.5rem;
   width: 100%;
-  padding: 0.5rem 1rem;
+  font-size: ${({ theme }) => theme.textSize};
+  padding: ${({ theme }) => theme.defaultMargin};
   color: ${({ theme }) => theme.colors.white};
-  background: ${({ theme }) => theme.colors.darkGray};
-  border: 1px solid ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.mediumGray};
+  border: 1px solid ${({ theme }) => theme.colors.lightGray};
   border-radius: ${({ theme }) => theme.borderRadius};
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 50px;
   box-sizing: border-box;
 
   &:focus {
-    border: 1px solid ${({ theme }) => theme.colors.green};
-    outline: none !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    outline: none;
+    border: 1px solid ${({ theme }) => theme.colors.white};
   }
 `;
 
