@@ -16,8 +16,11 @@ const queryClient = new QueryClient();
 
 const GlobalStyle = createGlobalStyle`
   body {
+    position: relative;
     margin: 0;
     padding: 0;
+    font-size: ${(props) => props.theme.textSize};
+    font-family: ${(props) => props.theme.fonts.text};
     color: ${(props) => props.theme.colors.white};
     background: ${(props) => props.theme.colors.darkGray};
   }

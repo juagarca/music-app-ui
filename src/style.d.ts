@@ -3,13 +3,19 @@ import "styled-components";
 declare module "styled-components" {
   export interface DefaultTheme {
     borderRadius: string;
+    defaultMargin: string;
+    textSize: string;
+
+    fonts: {
+      headings: string;
+      text: string;
+    };
 
     colors: {
       black: string;
       darkGray: string;
-      darkGreen: string;
-      green: string;
       lightGray: string;
+      mediumGray: string;
       white: string;
     };
 

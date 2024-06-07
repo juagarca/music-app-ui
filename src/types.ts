@@ -6,12 +6,13 @@ interface Artist {
   placeOfBirth?: string;
   bio?: string;
   members: string[];
+  photoUrl?: string;
 }
 
-interface Favourite {
+interface Favorite {
   id: string;
   artistId: string;
   userId: string;
 }
 
-export type { Artist, Favourite };
+export type { Artist, Favorite };
