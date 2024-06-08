@@ -1,24 +1,29 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 
 import { SearchForm, ArtistCard } from "../components";
 
 import { fetchArtists } from "../api";
+import { Artist } from "../types";
+import artistsData from "../data/artists.json";
 
 const Artists = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["artists"],
     queryFn: fetchArtists,
+    initialData: artistsData,
   });
+  const [artists, setArtists] = useState<Artist[]>(data);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;
 
   return (
     <ArtistsWrapper>
-      <SearchForm />
+      <SearchForm setArtists={setArtists} />
       <ArtistsGrid>
-        {data?.map((artist) => (
+        {artists.map((artist) => (
           <ArtistCard artist={artist} key={artist._id} />
         ))}
       </ArtistsGrid>

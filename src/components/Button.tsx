@@ -18,7 +18,7 @@ const ButtonWrapper = styled.button`
   width: 2.2rem;
   color: ${({ theme }) => theme.colors.lightGray};
   background: ${({ theme }) => theme.colors.black};
-  border: 1px solid ${({ theme }) => theme.colors.lightGray};
+  border: 1px solid ${({ theme }) => theme.colors.mediumGray};
   border-radius: 50%;
   transition: all 0.25s ease;
   cursor: pointer;

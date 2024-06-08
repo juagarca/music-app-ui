@@ -4,27 +4,27 @@ import { Link } from "react-router-dom";
 interface ButtonLinkProps {
   to: string;
   label?: string;
-  active?: boolean;
   children?: React.ReactNode;
+  active?: boolean;
 }
 
 const ButtonLink = ({
   to,
   label,
-  active = false,
   children,
+  active = false,
 }: ButtonLinkProps) => {
   return (
-    <LinkWrapper to={to} active={active}>
+    <LinkWrapper to={to} $active={active}>
       {label || children}
     </LinkWrapper>
   );
 };
 
-const LinkWrapper = styled(Link)<{ active: boolean }>`
+const LinkWrapper = styled(Link)<{ $active: boolean }>`
   text-decoration: none;
-  color: ${({ theme, active }) =>
-    active ? theme.colors.white : theme.colors.lightGray};
+  color: ${({ theme, $active }) =>
+    $active ? theme.colors.white : theme.colors.lightGray};
   transition: all 0.25s ease;
 
   &:hover {

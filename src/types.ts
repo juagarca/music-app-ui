@@ -2,7 +2,7 @@ interface Artist {
   _id: string;
   artistName: string;
   name?: string;
-  dateOfBirth?: Date;
+  dateOfBirth?: string;
   placeOfBirth?: string;
   bio?: string;
   members: string[];
