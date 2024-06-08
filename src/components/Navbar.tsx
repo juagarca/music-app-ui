@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 
-import { Avatar, ButtonLink } from "../components";
+import { Avatar, ButtonLink, Heading } from "../components";
 
 import ROUTES from "../routes";
 
@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <NavbarWrapper>
-      <Logo>Music App</Logo>
+      <Logo size="h6">Music App</Logo>
       <Links>
         <ButtonLink
           to={ROUTES.artists}
@@ -35,9 +35,8 @@ const NavbarWrapper = styled.div`
   box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 50px;
 `;
 
-const Logo = styled.h3`
+const Logo = styled(Heading)`
   margin: 0;
-  font-family: ${({ theme }) => theme.fonts.headings};
   color: ${({ theme }) => theme.colors.white};
 `;
 

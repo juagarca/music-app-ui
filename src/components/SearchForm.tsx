@@ -40,7 +40,7 @@ const SearchForm = ({ setArtists }: SearchFormProps) => {
           value={value}
           onChange={handleChange}
         />
-        <Button>
+        <Button variant="secondary">
           <Magnifier />
         </Button>
       </InputWrapper>
@@ -55,20 +55,20 @@ const InputWrapper = styled.div`
 
   button {
     position: absolute;
-    top: 10px;
-    right: 12px;
+    top: 11px;
+    right: 13px;
   }
 `;
 
 const Input = styled.input`
   height: 3.5rem;
   width: 100%;
-  font-size: ${({ theme }) => theme.textSize};
+  font-size: ${({ theme }) => theme.fontSize.body};
   padding: ${({ theme }) => theme.defaultMargin};
   color: ${({ theme }) => theme.colors.white};
-  background: ${({ theme }) => theme.colors.mediumGray};
+  background: ${({ theme }) => theme.colors.gray};
   border: 1px solid ${({ theme }) => theme.colors.lightGray};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.big};
   box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 50px;
   box-sizing: border-box;
 

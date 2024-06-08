@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 
-import { SearchForm, ArtistCard } from "../components";
+import { SearchForm, SearchCard } from "../components";
 
 import { fetchArtists } from "../api";
 import { Artist } from "../types";
@@ -24,7 +24,7 @@ const Artists = () => {
       <SearchForm setArtists={setArtists} />
       <ArtistsGrid>
         {artists.map((artist) => (
-          <ArtistCard artist={artist} key={artist._id} />
+          <SearchCard artist={artist} key={artist._id} />
         ))}
       </ArtistsGrid>
     </ArtistsWrapper>

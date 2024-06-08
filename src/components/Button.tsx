@@ -2,24 +2,36 @@ import styled from "styled-components";
 
 interface ButtonProps {
   label?: string;
+  variant: "primary" | "secondary";
   children?: React.ReactNode;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button = ({ label, children }: ButtonProps) => {
+const Button = ({ label, variant, children, onClick }: ButtonProps) => {
   return (
-    <ButtonWrapper name="button" type="submit">
+    <ButtonWrapper
+      name="button"
+      type="submit"
+      $variant={variant}
+      onClick={onClick}
+    >
       {label || children}
     </ButtonWrapper>
   );
 };
 
-const ButtonWrapper = styled.button`
-  height: 2.2rem;
-  width: 2.2rem;
-  color: ${({ theme }) => theme.colors.lightGray};
+const ButtonWrapper = styled.button<{ $variant: string }>`
+  width: fit-content;
+  height: fit-content;
+  padding: 0.4rem 0.8rem;
+  font-size: ${({ theme }) => theme.fontSize.body};
+  color: ${({ theme, $variant }) =>
+    $variant === "primary" ? theme.colors.white : theme.colors.lightGray};
   background: ${({ theme }) => theme.colors.black};
-  border: 1px solid ${({ theme }) => theme.colors.mediumGray};
-  border-radius: 50%;
+  border: 1px solid
+    ${({ theme, $variant }) =>
+      $variant === "primary" ? theme.colors.white : theme.colors.lightGray};
+  border-radius: ${({ theme }) => theme.borderRadius.big};
   transition: all 0.25s ease;
   cursor: pointer;
 

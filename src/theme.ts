@@ -1,21 +1,36 @@
 import { DefaultTheme } from "styled-components";
 
 const theme: DefaultTheme = {
-  borderRadius: "50px",
   defaultMargin: "1rem",
-  textSize: "1.2rem",
 
-  fonts: {
-    headings: "Bebas Neue, Helvetica, Arial, sans-serif",
-    text: "Quicksand, Helvetica, Arial, sans-serif",
+  borderRadius: {
+    small: "8px",
+    big: "50px",
+    round: "50%",
   },
 
   colors: {
     black: "#181818",
     darkGray: "#272727",
     lightGray: "#565856",
-    mediumGray: "#22242A",
+    gray: "#22242B",
     white: "#F8F8F8",
+  },
+
+  fonts: {
+    headings: "Bebas Neue, Helvetica, Arial, sans-serif",
+    text: "Quicksand, Helvetica, Arial, sans-serif",
+  },
+
+  fontSize: {
+    h1: "3.5rem",
+    h2: "3rem",
+    h3: "2.5rem",
+    h4: "2rem",
+    h5: "1.5rem",
+    h6: "1rem",
+    body: "1rem",
+    small: "0.5rem",
   },
 
   screenBreakpoints: {

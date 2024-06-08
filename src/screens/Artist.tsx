@@ -1,27 +1,97 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
+
+import { ArtistCard, Button, Heading, ReleaseCard, Text } from "../components";
 
 import { fetchArtist } from "../api";
+import { Artist } from "../types";
+import artistsData from "../data/artists.json";
 
-const Artist = () => {
+const ArtistShow = () => {
+  const [followed, setFollowed] = useState(false);
   const { artistId } = useParams();
   const { data, isLoading, error } = useQuery({
     queryKey: ["artist"],
     queryFn: () => fetchArtist(artistId!),
   });
+  const artist = artistsData.find((artist: Artist) => artist._id === artistId);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error || !artistId) return <div>Error!</div>;
+  // if (isLoading) return <div>Loading...</div>;
+  // if (error || !artistId) return <div>Error!</div>;
+  if (!artistId || !artist) return <div>Error!</div>;
 
   return (
-    <>
-      <h1>{data?.artistName}</h1>
-      <p>{data?.name}</p>
-      <p>{data?.dateOfBirth?.toString()}</p>
-      <p>{data?.placeOfBirth}</p>
-      <p>{data?.bio}</p>
-    </>
+    <ArtistWrapper>
+      <ArtistCard artist={artist} />
+      <ArtistInfo>
+        <ArtistDetails>
+          <HeadingWrapper>
+            <Heading>{artist.artistName}</Heading>
+            <Button
+              label={followed ? "Following" : "Follow"}
+              variant={followed ? "secondary" : "primary"}
+              onClick={(e) => {
+                e.currentTarget.blur();
+                setFollowed(e.currentTarget.innerText === "Follow");
+              }}
+            />
+          </HeadingWrapper>
+          <Text>{artist.name}</Text>
+          <Text>{artist.dateOfBirth?.toString()}</Text>
+          <Text>{artist.placeOfBirth}</Text>
+          <Text>{artist.bio}</Text>
+        </ArtistDetails>
+        <Heading size="h4">Releases</Heading>
+        <ArtistReleases>
+          <ReleaseCard />
+          <ReleaseCard />
+          <ReleaseCard />
+          <ReleaseCard />
+        </ArtistReleases>
+      </ArtistInfo>
+    </ArtistWrapper>
   );
 };
 
-export default Artist;
+const ArtistWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: ${({ theme }) => theme.defaultMargin};
+  flex-grow: 1;
+  margin: ${({ theme }) => theme.defaultMargin};
+`;
+
+const HeadingWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.defaultMargin};
+`;
+
+const ArtistInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.defaultMargin};
+`;
+
+const ArtistDetails = styled.div`
+  height: fit-content;
+  padding: ${({ theme }) => theme.defaultMargin};
+  background: ${({ theme }) => theme.colors.gray};
+  border: 1px solid ${({ theme }) => theme.colors.lightGray};
+  border-radius: ${({ theme }) => theme.borderRadius.small};
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 50px;
+
+  h1 {
+    font-size: ${({ theme }) => theme.fontSize.h2};
+  }
+`;
+
+const ArtistReleases = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: ${({ theme }) => theme.defaultMargin};
+`;
+
+export default ArtistShow;

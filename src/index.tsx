@@ -19,10 +19,21 @@ const GlobalStyle = createGlobalStyle`
     position: relative;
     margin: 0;
     padding: 0;
-    font-size: ${(props) => props.theme.textSize};
+    height: 100vh;
     font-family: ${(props) => props.theme.fonts.text};
     color: ${(props) => props.theme.colors.white};
     background: ${(props) => props.theme.colors.darkGray};
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: ${(props) => props.theme.fonts.headings};
+    margin: 0;
   }
 `;
 
