@@ -50,8 +50,9 @@ const ArtistCardWrapper = styled.div`
 `;
 
 const ArtistCardTitle = styled.h2`
-  font-size: 2rem;
+  font-size: 3.5rem;
   font-weight: bold;
+  font-family: ${({ theme }) => theme.fonts.headings};
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 `;
 

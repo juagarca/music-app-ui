@@ -6,8 +6,8 @@ const theme: DefaultTheme = {
   textSize: "1.2rem",
 
   fonts: {
-    headings: "Helvetica, Arial, sans-serif",
-    text: "Helvetica, Arial, sans-serif",
+    headings: "Bebas Neue, Helvetica, Arial, sans-serif",
+    text: "Quicksand, Helvetica, Arial, sans-serif",
   },
 
   colors: {

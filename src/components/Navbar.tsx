@@ -37,6 +37,7 @@ const NavbarWrapper = styled.div`
 
 const Logo = styled.h3`
   margin: 0;
+  font-family: ${({ theme }) => theme.fonts.headings};
   color: ${({ theme }) => theme.colors.white};
 `;
 
