@@ -15,4 +15,22 @@ interface Favorite {
   userId: string;
 }
 
-export type { Artist, Favorite };
+interface Release {
+  _id: string;
+  name: string;
+  artist: string;
+  type: "ALBUM" | "EP" | "SINGLE";
+  releaseDate?: string;
+  duration: number;
+  photoUrl?: string;
+  tracks: Track[];
+}
+
+interface Track {
+  name: string;
+  number: number;
+  artistIds: string[];
+  duration: number;
+}
+
+export type { Artist, Favorite, Release, Track };

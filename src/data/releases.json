@@ -1,0 +1,119 @@
+[
+  {
+    "_id": "1",
+    "name": "Moonlight",
+    "artist": "Darin",
+    "type": "SINGLE",
+    "releaseDate": "2024-05-24",
+    "duration": 156,
+    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717855442/releases/moonlight.jpg",
+    "tracks": [
+      {
+        "name": "Moonlight",
+        "number": 1,
+        "artistIds": ["2"],
+        "duration": 156
+      }
+    ]
+  },
+  {
+    "_id": "2",
+    "name": "Brat",
+    "artist": "Charli XCX",
+    "type": "ALBUM",
+    "releaseDate": "2024-05-08",
+    "duration": 2523,
+    "tracks": [
+      {
+        "name": "360",
+        "number": 1,
+        "artistIds": ["3"],
+        "duration": 134
+      },
+      {
+        "name": "Club classics",
+        "number": 2,
+        "artistIds": ["3"],
+        "duration": 154
+      },
+      {
+        "name": "Sympathy is a knife",
+        "number": 3,
+        "artistIds": ["3"],
+        "duration": 151
+      },
+      {
+        "name": "I might say something stupid",
+        "number": 4,
+        "artistIds": ["3"],
+        "duration": 109
+      },
+      {
+        "name": "Talk talk",
+        "number": 5,
+        "artistIds": ["3"],
+        "duration": 162
+      },
+      {
+        "name": "Von dutch",
+        "number": 6,
+        "artistIds": ["3"],
+        "duration": 164
+      },
+      {
+        "name": "Everything is romantic",
+        "number": 7,
+        "artistIds": ["3"],
+        "duration": 134
+      },
+      {
+        "name": "Rewind",
+        "number": 8,
+        "artistIds": ["3"],
+        "duration": 203
+      },
+      {
+        "name": "So I",
+        "number": 9,
+        "artistIds": ["3"],
+        "duration": 211
+      },
+      {
+        "name": "Girl, so confusing",
+        "number": 10,
+        "artistIds": ["3"],
+        "duration": 175
+      },
+      {
+        "name": "Apple",
+        "number": 11,
+        "artistIds": ["3"],
+        "duration": 152
+      },
+      {
+        "name": "B2b",
+        "number": 12,
+        "artistIds": ["3"],
+        "duration": 179
+      },
+      {
+        "name": "Mean girls",
+        "number": 13,
+        "artistIds": ["3"],
+        "duration": 189
+      },
+      {
+        "name": "I think about it all the time",
+        "number": 14,
+        "artistIds": ["3"],
+        "duration": 136
+      },
+      {
+        "name": "365",
+        "number": 15,
+        "artistIds": ["3"],
+        "duration": 204
+      }
+    ]
+  }
+]

@@ -6,9 +6,11 @@ import { SearchForm, SearchCard } from "../components";
 
 import { fetchArtists } from "../api";
 import { Artist } from "../types";
-import artistsData from "../data/artists.json";
+
+import artistsDataJson from "../data/artists.json";
 
 const Artists = () => {
+  const artistsData: Artist[] = artistsDataJson as Artist[];
   const { data, isLoading, error } = useQuery({
     queryKey: ["artists"],
     queryFn: fetchArtists,
@@ -17,7 +19,7 @@ const Artists = () => {
   const [artists, setArtists] = useState<Artist[]>(data);
 
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error!</div>;
+  // if (error) return <div>Error!</div>;
 
   return (
     <ArtistsWrapper>

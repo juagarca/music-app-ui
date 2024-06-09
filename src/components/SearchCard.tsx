@@ -12,22 +12,25 @@ interface SearchCardProps {
 
 const SearchCard = ({ artist }: SearchCardProps) => {
   const navigate = useNavigate();
+  const { _id, artistName } = artist;
 
   return (
     <SearchCardWrapper
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${artist.photoUrl}')`,
       }}
-      onClick={() => navigate(`${ROUTES.artists}/${artist._id}`)}
+      onClick={() => navigate(`${ROUTES.artists}/${_id}`)}
     >
-      <SearchCardTitle size="h2">{artist.artistName}</SearchCardTitle>
+      <SearchCardTitle size="h2">{artistName}</SearchCardTitle>
     </SearchCardWrapper>
   );
 };
 
 const SearchCardWrapper = styled.div`
-  text-align: center;
-  padding: 4rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -44,14 +47,11 @@ const SearchCardWrapper = styled.div`
   a {
     text-decoration: none;
   }
-
-  @media (min-width: ${({ theme }) => theme.screenBreakpoints.tablet}) {
-    padding: 8rem 0;
-  }
 `;
 
 const SearchCardTitle = styled(Heading)`
-  font-weight: bold;
+  flex: 0 0 18rem;
+  text-align: center;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 `;
 

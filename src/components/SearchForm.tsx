@@ -55,7 +55,7 @@ const InputWrapper = styled.div`
 
   button {
     position: absolute;
-    top: 11px;
+    top: 13px;
     right: 13px;
   }
 `;

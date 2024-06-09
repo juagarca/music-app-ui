@@ -9,6 +9,7 @@ interface HeadingProps {
 const Heading = styled(({ size = "h1", ...props }: HeadingProps) =>
   React.createElement(size, props)
 )`
+  font-weight: 400;
   font-size: ${({ size, theme }) => {
     switch (size) {
       case "h1":

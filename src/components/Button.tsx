@@ -24,7 +24,7 @@ const ButtonWrapper = styled.button<{ $variant: string }>`
   width: fit-content;
   height: fit-content;
   padding: 0.4rem 0.8rem;
-  font-size: ${({ theme }) => theme.fontSize.body};
+  font-size: ${({ theme }) => theme.fontSize.small};
   color: ${({ theme, $variant }) =>
     $variant === "primary" ? theme.colors.white : theme.colors.lightGray};
   background: ${({ theme }) => theme.colors.black};

@@ -32,6 +32,7 @@ declare module "styled-components" {
       h6: string;
       body: string;
       small: string;
+      extraSmall: string;
     };
 
     screenBreakpoints: {

@@ -21,6 +21,7 @@ const TextWrapper = styled.p<{ $variant: string }>`
     }
   }};
   color: ${({ theme }) => theme.colors.white};
+  margin: 0;
   opacity: 0.7;
 `;
 

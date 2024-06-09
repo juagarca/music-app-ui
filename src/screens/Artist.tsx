@@ -6,8 +6,10 @@ import styled from "styled-components";
 import { ArtistCard, Button, Heading, ReleaseCard, Text } from "../components";
 
 import { fetchArtist } from "../api";
-import { Artist } from "../types";
-import artistsData from "../data/artists.json";
+import { Artist, Release } from "../types";
+
+import artistsDataJson from "../data/artists.json";
+import releasesDataJson from "../data/releases.json";
 
 const ArtistShow = () => {
   const [followed, setFollowed] = useState(false);
@@ -16,11 +18,19 @@ const ArtistShow = () => {
     queryKey: ["artist"],
     queryFn: () => fetchArtist(artistId!),
   });
+  const artistsData: Artist[] = artistsDataJson as Artist[];
+  const releasesData: Release[] = releasesDataJson as Release[];
+
   const artist = artistsData.find((artist: Artist) => artist._id === artistId);
+
+  if (!artistId || !artist) return <div>Error!</div>;
+
+  const releases = releasesData.filter((release: Release) =>
+    release.tracks.some((track) => track.artistIds.includes(artist._id))
+  );
 
   // if (isLoading) return <div>Loading...</div>;
   // if (error || !artistId) return <div>Error!</div>;
-  if (!artistId || !artist) return <div>Error!</div>;
 
   return (
     <ArtistWrapper>
@@ -43,12 +53,15 @@ const ArtistShow = () => {
           <Text>{artist.placeOfBirth}</Text>
           <Text>{artist.bio}</Text>
         </ArtistDetails>
-        <Heading size="h4">Releases</Heading>
+        <Heading size="h5">Releases</Heading>
         <ArtistReleases>
-          <ReleaseCard />
-          <ReleaseCard />
-          <ReleaseCard />
-          <ReleaseCard />
+          {releases.length ? (
+            releases.map((release: Release) => (
+              <ReleaseCard release={release} key={release._id} />
+            ))
+          ) : (
+            <Text>No releases found</Text>
+          )}
         </ArtistReleases>
       </ArtistInfo>
     </ArtistWrapper>
@@ -60,7 +73,7 @@ const ArtistWrapper = styled.div`
   grid-template-columns: 1fr 2fr;
   grid-gap: ${({ theme }) => theme.defaultMargin};
   flex-grow: 1;
-  margin: ${({ theme }) => theme.defaultMargin};
+  padding: ${({ theme }) => theme.defaultMargin};
 `;
 
 const HeadingWrapper = styled.div`
@@ -73,9 +86,15 @@ const ArtistInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.defaultMargin};
+  // TODO: Fix this
+  max-height: 600px;
+  overflow-y: auto;
 `;
 
 const ArtistDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.defaultMargin};
   height: fit-content;
   padding: ${({ theme }) => theme.defaultMargin};
   background: ${({ theme }) => theme.colors.gray};

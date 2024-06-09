@@ -10,13 +10,14 @@ interface ArtistCardProps {
 
 const ArtistCard = ({ artist }: ArtistCardProps) => {
   const navigate = useNavigate();
+  const { _id, photoUrl } = artist;
 
   return (
     <ArtistCardWrapper
       style={{
-        backgroundImage: `url('${artist.photoUrl}')`,
+        backgroundImage: `url('${photoUrl}')`,
       }}
-      onClick={() => navigate(`${ROUTES.artists}/${artist._id}`)}
+      onClick={() => navigate(`${ROUTES.artists}/${_id}`)}
     />
   );
 };
