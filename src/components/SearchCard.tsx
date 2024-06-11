@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { Heading } from "../components";
 
 import ROUTES from "../routes";
-import { Artist } from "../types";
+import { IArtist } from "../types";
 
 interface SearchCardProps {
-  artist: Artist;
+  artist: IArtist;
 }
 
 const SearchCard = ({ artist }: SearchCardProps) => {

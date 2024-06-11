@@ -1,26 +1,30 @@
 import styled from "styled-components";
 import pluralize from "pluralize";
+import { useNavigate } from "react-router-dom";
 
 import { Heading, Text } from "../components";
+import releaseImage from "../assets/release.png";
 
-import { Release } from "../types";
+import { IRelease } from "../types";
 import { formatDate, formatSeconds } from "../utils";
+import ROUTES from "../routes";
 
 interface ReleaseCardProps {
-  release: Release;
+  release: IRelease;
 }
 
 const ReleaseCard = ({ release }: ReleaseCardProps) => {
-  const { name, releaseDate, duration, photoUrl, tracks } = release;
+  const navigate = useNavigate();
+  const { _id, name, releaseDate, duration, photoUrl, tracks } = release;
 
   return (
-    <ReleaseCardWrapper>
-      <Image src={photoUrl} alt={name} />
+    <ReleaseCardWrapper onClick={() => navigate(`${ROUTES.releases}/${_id}`)}>
+      <Image src={photoUrl ? photoUrl : releaseImage} alt={name} />
       <ReleaseCardDetails>
         <Heading size="h6">{name}</Heading>
         <Text>{`${tracks.length} ${pluralize("song", tracks.length)}`}</Text>
         <Text>{formatSeconds(duration)}</Text>
-        <Text>{formatDate(releaseDate)}</Text>
+        {releaseDate && <Text>{formatDate(releaseDate)}</Text>}
       </ReleaseCardDetails>
     </ReleaseCardWrapper>
   );
@@ -33,6 +37,12 @@ const ReleaseCardWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.lightGray};
   border-radius: ${({ theme }) => theme.borderRadius.small};
   box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 50px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.colors.white};
+  }
 `;
 
 const Image = styled.img`
@@ -41,9 +51,9 @@ const Image = styled.img`
 `;
 
 const ReleaseCardDetails = styled.div`
-  padding: ${({ theme }) => theme.defaultMargin};
+  padding: ${({ theme }) => theme.margin.default};
 
-  > p {
+  > * {
     font-size: ${({ theme }) => theme.fontSize.small};
     margin-bottom: 0.3rem;
   }

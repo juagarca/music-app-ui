@@ -1,3 +1,5 @@
+import Check from "./Check";
+import Cross from "./Cross";
 import Magnifier from "./Magnifier";
 
-export { Magnifier };
+export { Check, Cross, Magnifier };

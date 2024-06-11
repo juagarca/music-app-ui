@@ -1,8 +1,6 @@
 import { DefaultTheme } from "styled-components";
 
 const theme: DefaultTheme = {
-  defaultMargin: "1rem",
-
   borderRadius: {
     small: "8px",
     big: "50px",
@@ -32,6 +30,11 @@ const theme: DefaultTheme = {
     body: "1rem",
     small: "0.8rem",
     extraSmall: "0.5rem",
+  },
+
+  margin: {
+    small: "0.5rem",
+    default: "1rem",
   },
 
   screenBreakpoints: {

@@ -1,4 +1,4 @@
-interface Artist {
+interface IArtist {
   _id: string;
   artistName: string;
   name?: string;
@@ -9,13 +9,7 @@ interface Artist {
   photoUrl?: string;
 }
 
-interface Favorite {
-  id: string;
-  artistId: string;
-  userId: string;
-}
-
-interface Release {
+interface IRelease {
   _id: string;
   name: string;
   artist: string;
@@ -23,14 +17,14 @@ interface Release {
   releaseDate?: string;
   duration: number;
   photoUrl?: string;
-  tracks: Track[];
+  tracks: ITrack[];
 }
 
-interface Track {
+interface ITrack {
   name: string;
   number: number;
   artistIds: string[];
   duration: number;
 }
 
-export type { Artist, Favorite, Release, Track };
+export type { IArtist, IRelease, ITrack };

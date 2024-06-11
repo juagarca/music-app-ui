@@ -5,11 +5,11 @@ import Button from "./Button";
 import { Magnifier } from "../icons";
 
 import ROUTES from "../routes";
-import { Artist } from "../types";
+import { IArtist } from "../types";
 import artistsData from "../data/artists.json";
 
 interface SearchFormProps {
-  setArtists: React.Dispatch<React.SetStateAction<Artist[]>>;
+  setArtists: React.Dispatch<React.SetStateAction<IArtist[]>>;
 }
 
 const SearchForm = ({ setArtists }: SearchFormProps) => {
@@ -20,7 +20,7 @@ const SearchForm = ({ setArtists }: SearchFormProps) => {
     setValue(value);
 
     if (value === "") {
-      setArtists(artistsData as Artist[]);
+      setArtists(artistsData as IArtist[]);
     }
 
     const filteredArtists = artistsData.filter((artist) =>
@@ -64,7 +64,7 @@ const Input = styled.input`
   height: 3.5rem;
   width: 100%;
   font-size: ${({ theme }) => theme.fontSize.body};
-  padding: ${({ theme }) => theme.defaultMargin};
+  padding: ${({ theme }) => theme.margin.default};
   color: ${({ theme }) => theme.colors.white};
   background: ${({ theme }) => theme.colors.gray};
   border: 1px solid ${({ theme }) => theme.colors.lightGray};

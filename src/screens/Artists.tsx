@@ -5,18 +5,18 @@ import styled from "styled-components";
 import { SearchForm, SearchCard } from "../components";
 
 import { fetchArtists } from "../api";
-import { Artist } from "../types";
+import { IArtist } from "../types";
 
 import artistsDataJson from "../data/artists.json";
 
 const Artists = () => {
-  const artistsData: Artist[] = artistsDataJson as Artist[];
+  const artistsData: IArtist[] = artistsDataJson as IArtist[];
   const { data, isLoading, error } = useQuery({
     queryKey: ["artists"],
     queryFn: fetchArtists,
     initialData: artistsData,
   });
-  const [artists, setArtists] = useState<Artist[]>(data);
+  const [artists, setArtists] = useState<IArtist[]>(data);
 
   if (isLoading) return <div>Loading...</div>;
   // if (error) return <div>Error!</div>;
@@ -36,14 +36,14 @@ const Artists = () => {
 const ArtistsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.defaultMargin};
-  padding: ${({ theme }) => theme.defaultMargin};
+  gap: ${({ theme }) => theme.margin.default};
+  padding: ${({ theme }) => theme.margin.default};
 `;
 
 const ArtistsGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: ${({ theme }) => theme.defaultMargin};
+  grid-gap: ${({ theme }) => theme.margin.default};
 
   @media (min-width: ${({ theme }) => theme.screenBreakpoints.tablet}) {
     grid-template-columns: 1fr 1fr;

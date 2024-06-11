@@ -1,5 +1,5 @@
 import Artist from "./Artist";
 import Artists from "./Artists";
-import Favorites from "./Favorites";
+import Release from "./Release";
 
-export { Artist, Artists, Favorites };
+export { Artist, Artists, Release };

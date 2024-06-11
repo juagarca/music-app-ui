@@ -2,8 +2,6 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
-    defaultMargin: string;
-
     borderRadius: {
       small: string;
       big: string;
@@ -33,6 +31,11 @@ declare module "styled-components" {
       body: string;
       small: string;
       extraSmall: string;
+    };
+
+    margin: {
+      small: string;
+      default: string;
     };
 
     screenBreakpoints: {

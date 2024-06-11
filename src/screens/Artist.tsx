@@ -3,29 +3,30 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { ArtistCard, Button, Heading, ReleaseCard, Text } from "../components";
+import { ArtistImage, Button, Heading, ReleaseCard, Text } from "../components";
 
 import { fetchArtist } from "../api";
-import { Artist, Release } from "../types";
+import { IArtist, IRelease } from "../types";
 
 import artistsDataJson from "../data/artists.json";
 import releasesDataJson from "../data/releases.json";
 
-const ArtistShow = () => {
+const Artist = () => {
   const [followed, setFollowed] = useState(false);
   const { artistId } = useParams();
   const { data, isLoading, error } = useQuery({
     queryKey: ["artist"],
     queryFn: () => fetchArtist(artistId!),
   });
-  const artistsData: Artist[] = artistsDataJson as Artist[];
-  const releasesData: Release[] = releasesDataJson as Release[];
+  const artistsData: IArtist[] = artistsDataJson as IArtist[];
+  const releasesData: IRelease[] = releasesDataJson as IRelease[];
 
-  const artist = artistsData.find((artist: Artist) => artist._id === artistId);
+  const artist = artistsData.find((artist: IArtist) => artist._id === artistId);
 
   if (!artistId || !artist) return <div>Error!</div>;
 
-  const releases = releasesData.filter((release: Release) =>
+  const { name, artistName, dateOfBirth, placeOfBirth, bio, photoUrl } = artist;
+  const releases = releasesData.filter((release: IRelease) =>
     release.tracks.some((track) => track.artistIds.includes(artist._id))
   );
 
@@ -34,11 +35,11 @@ const ArtistShow = () => {
 
   return (
     <ArtistWrapper>
-      <ArtistCard artist={artist} />
+      {photoUrl && <ArtistImage photoUrl={photoUrl} />}
       <ArtistInfo>
         <ArtistDetails>
           <HeadingWrapper>
-            <Heading>{artist.artistName}</Heading>
+            <Heading>{artistName}</Heading>
             <Button
               label={followed ? "Following" : "Follow"}
               variant={followed ? "secondary" : "primary"}
@@ -48,15 +49,15 @@ const ArtistShow = () => {
               }}
             />
           </HeadingWrapper>
-          <Text>{artist.name}</Text>
-          <Text>{artist.dateOfBirth?.toString()}</Text>
-          <Text>{artist.placeOfBirth}</Text>
-          <Text>{artist.bio}</Text>
+          <Text>{name}</Text>
+          <Text>{dateOfBirth?.toString()}</Text>
+          <Text>{placeOfBirth}</Text>
+          <Text>{bio}</Text>
         </ArtistDetails>
         <Heading size="h5">Releases</Heading>
         <ArtistReleases>
           {releases.length ? (
-            releases.map((release: Release) => (
+            releases.map((release: IRelease) => (
               <ReleaseCard release={release} key={release._id} />
             ))
           ) : (
@@ -71,21 +72,21 @@ const ArtistShow = () => {
 const ArtistWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-gap: ${({ theme }) => theme.defaultMargin};
+  grid-gap: ${({ theme }) => theme.margin.default};
   flex-grow: 1;
-  padding: ${({ theme }) => theme.defaultMargin};
+  padding: ${({ theme }) => theme.margin.default};
 `;
 
 const HeadingWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.defaultMargin};
+  gap: ${({ theme }) => theme.margin.default};
 `;
 
 const ArtistInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.defaultMargin};
+  gap: ${({ theme }) => theme.margin.default};
   // TODO: Fix this
   max-height: 600px;
   overflow-y: auto;
@@ -94,9 +95,9 @@ const ArtistInfo = styled.div`
 const ArtistDetails = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.defaultMargin};
+  gap: ${({ theme }) => theme.margin.default};
   height: fit-content;
-  padding: ${({ theme }) => theme.defaultMargin};
+  padding: ${({ theme }) => theme.margin.default};
   background: ${({ theme }) => theme.colors.gray};
   border: 1px solid ${({ theme }) => theme.colors.lightGray};
   border-radius: ${({ theme }) => theme.borderRadius.small};
@@ -110,7 +111,7 @@ const ArtistDetails = styled.div`
 const ArtistReleases = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: ${({ theme }) => theme.defaultMargin};
+  grid-gap: ${({ theme }) => theme.margin.default};
 `;
 
-export default ArtistShow;
+export default Artist;

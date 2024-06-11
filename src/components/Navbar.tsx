@@ -31,7 +31,7 @@ const NavbarWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: ${({ theme }) => theme.defaultMargin};
+  padding: ${({ theme }) => theme.margin.default};
   background: ${({ theme }) => theme.colors.black};
   box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 50px;
 `;
@@ -45,7 +45,7 @@ const Links = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: ${({ theme }) => theme.defaultMargin};
+  gap: ${({ theme }) => theme.margin.default};
 `;
 
 export default Navbar;
