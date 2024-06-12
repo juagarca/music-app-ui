@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import pluralize from "pluralize";
 
 import {
   Heading,
@@ -10,7 +11,7 @@ import {
 } from "../components";
 
 import { IRelease, ITrack } from "../types";
-import { formatDate } from "../utils";
+import { formatDate, formatSeconds } from "../utils";
 import ROUTES from "../routes";
 
 import releasesDataJson from "../data/releases.json";
@@ -25,7 +26,7 @@ const Release = () => {
 
   if (!releaseId || !release) return <div>Error!</div>;
 
-  const { name, artistId, artistName, releaseDate, tracks } = release;
+  const { name, artistId, artistName, releaseDate, duration, tracks } = release;
 
   return (
     <ReleaseWrapper>
@@ -41,7 +42,13 @@ const Release = () => {
               active
             />
           </Text>
-          {releaseDate && <Text>Released on {formatDate(releaseDate)}</Text>}
+          <Text>
+            {`${tracks.length} ${pluralize(
+              "song",
+              tracks.length
+            )} - ${formatSeconds(duration)}`}{" "}
+          </Text>
+          <Text>Release date: {formatDate(releaseDate)}</Text>
         </ReleaseInfo>
       </ReleaseDetails>
       <ReleaseTracksDetails>
@@ -71,6 +78,10 @@ const ReleaseWrapper = styled.div`
 const ReleaseDetails = styled.div`
   display: flex;
   flex-direction: column;
+
+  * {
+    margin-bottom: ${({ theme }) => theme.margin.small};
+  }
 `;
 
 const ReleaseTracksDetails = styled.div`

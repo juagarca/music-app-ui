@@ -21,7 +21,7 @@ const ReleaseCard = ({ release }: ReleaseCardProps) => {
     <ReleaseCardWrapper onClick={() => navigate(`${ROUTES.releases}/${_id}`)}>
       <Image src={photoUrl ? photoUrl : releaseImage} alt={name} />
       <ReleaseCardDetails>
-        <Heading size="h6">{name}</Heading>
+        <Heading size="h5">{name}</Heading>
         <Text>{`${tracks.length} ${pluralize("song", tracks.length)}`}</Text>
         <Text>{formatSeconds(duration)}</Text>
         {releaseDate && <Text>{formatDate(releaseDate)}</Text>}
@@ -53,9 +53,9 @@ const Image = styled.img`
 const ReleaseCardDetails = styled.div`
   padding: ${({ theme }) => theme.margin.default};
 
-  > * {
+  p {
     font-size: ${({ theme }) => theme.fontSize.small};
-    margin-bottom: 0.3rem;
+    // margin-bottom: ${({ theme }) => theme.margin.small};
   }
 `;
 

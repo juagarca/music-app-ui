@@ -6,7 +6,8 @@ import styled from "styled-components";
 import { ArtistImage, Button, Heading, ReleaseCard, Text } from "../components";
 
 import { fetchArtist } from "../api";
-import { IArtist, IFeaturingArtist, IRelease, ITrack } from "../types";
+import { formatDate } from "../utils";
+import { IArtist, IRelease } from "../types";
 
 import artistsDataJson from "../data/artists.json";
 import releasesDataJson from "../data/releases.json";
@@ -51,7 +52,7 @@ const Artist = () => {
             />
           </HeadingWrapper>
           <Text>{name}</Text>
-          <Text>{dateOfBirth?.toString()}</Text>
+          {dateOfBirth && <Text>{formatDate(dateOfBirth)}</Text>}
           <Text>{placeOfBirth}</Text>
           <Text>{bio}</Text>
         </ArtistDetails>

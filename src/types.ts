@@ -15,7 +15,7 @@ interface IRelease {
   artistId: string;
   artistName: string;
   type: "ALBUM" | "EP" | "MIXTAPE" | "SINGLE";
-  releaseDate?: string;
+  releaseDate: string;
   duration: number;
   photoUrl?: string;
   tracks: ITrack[];
