@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import { Button, Text } from ".";
+import { Button, FeaturingRow, Text } from ".";
 import { Check, Cross } from "../icons";
 
 import { ITrack } from "../types";
@@ -14,13 +14,16 @@ interface TrackCardProps {
 
 const TrackRow = ({ track, border = true }: TrackCardProps) => {
   const [listened, setListened] = useState(false);
-  const { name, number, duration } = track;
+  const { name, number, duration, featuring } = track;
 
   return (
     <TrackRowWrapper $border={border}>
-      <Text>
-        {number} - {name} - {formatSeconds(duration)}
-      </Text>
+      <TrackRowDetails>
+        <Text>
+          {number} - {name} - {formatSeconds(duration)}
+        </Text>
+        {featuring && <FeaturingRow featuring={featuring} />}
+      </TrackRowDetails>
       <Button
         variant={listened ? "secondary" : "primary"}
         onClick={(e) => {
@@ -37,10 +40,12 @@ const TrackRow = ({ track, border = true }: TrackCardProps) => {
 const TrackRowWrapper = styled.div<{ $border: boolean }>`
   display: flex;
   justify-content: space-between;
-  padding: ${({ theme, $border }) =>
-    `${theme.margin.small} 0 ${$border ? theme.margin.small : 0} 0`};
+  align-items: center;
+  padding: ${({ theme }) => theme.margin.default} 0;
   border-bottom: ${({ theme, $border }) =>
     $border ? `1px solid ${theme.colors.lightGray}` : "none"};
 `;
+
+const TrackRowDetails = styled.div``;
 
 export default TrackRow;

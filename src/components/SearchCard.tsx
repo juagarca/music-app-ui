@@ -6,18 +6,22 @@ import { Heading } from "../components";
 import ROUTES from "../routes";
 import { IArtist } from "../types";
 
+import artistImage from "../assets/artist.png";
+
 interface SearchCardProps {
   artist: IArtist;
 }
 
 const SearchCard = ({ artist }: SearchCardProps) => {
   const navigate = useNavigate();
-  const { _id, artistName } = artist;
+  const { _id, artistName, photoUrl } = artist;
 
   return (
     <SearchCardWrapper
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${artist.photoUrl}')`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${
+          photoUrl ? photoUrl : artistImage
+        }')`,
       }}
       onClick={() => navigate(`${ROUTES.artists}/${_id}`)}
     >

@@ -6,10 +6,11 @@ import styled from "styled-components";
 import { ArtistImage, Button, Heading, ReleaseCard, Text } from "../components";
 
 import { fetchArtist } from "../api";
-import { IArtist, IRelease } from "../types";
+import { IArtist, IFeaturingArtist, IRelease, ITrack } from "../types";
 
 import artistsDataJson from "../data/artists.json";
 import releasesDataJson from "../data/releases.json";
+import artistImage from "../assets/artist.png";
 
 const Artist = () => {
   const [followed, setFollowed] = useState(false);
@@ -26,8 +27,8 @@ const Artist = () => {
   if (!artistId || !artist) return <div>Error!</div>;
 
   const { name, artistName, dateOfBirth, placeOfBirth, bio, photoUrl } = artist;
-  const releases = releasesData.filter((release: IRelease) =>
-    release.tracks.some((track) => track.artistIds.includes(artist._id))
+  const releases = releasesData.filter(
+    (release: IRelease) => release.artistId === artistId
   );
 
   // if (isLoading) return <div>Loading...</div>;
@@ -35,7 +36,7 @@ const Artist = () => {
 
   return (
     <ArtistWrapper>
-      {photoUrl && <ArtistImage photoUrl={photoUrl} />}
+      <ArtistImage photoUrl={photoUrl ? photoUrl : artistImage} />
       <ArtistInfo>
         <ArtistDetails>
           <HeadingWrapper>

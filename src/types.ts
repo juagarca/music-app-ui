@@ -12,8 +12,9 @@ interface IArtist {
 interface IRelease {
   _id: string;
   name: string;
-  artist: string;
-  type: "ALBUM" | "EP" | "SINGLE";
+  artistId: string;
+  artistName: string;
+  type: "ALBUM" | "EP" | "MIXTAPE" | "SINGLE";
   releaseDate?: string;
   duration: number;
   photoUrl?: string;
@@ -23,8 +24,13 @@ interface IRelease {
 interface ITrack {
   name: string;
   number: number;
-  artistIds: string[];
   duration: number;
+  featuring: IFeaturingArtist[];
 }
 
-export type { IArtist, IRelease, ITrack };
+interface IFeaturingArtist {
+  artistId: string;
+  artistName: string;
+}
+
+export type { IArtist, IFeaturingArtist, IRelease, ITrack };

@@ -1,10 +1,17 @@
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { Heading, ReleaseImage, Text, TrackRow } from "../components";
+import {
+  Heading,
+  ButtonLink,
+  ReleaseImage,
+  Text,
+  TrackRow,
+} from "../components";
 
 import { IRelease, ITrack } from "../types";
 import { formatDate } from "../utils";
+import ROUTES from "../routes";
 
 import releasesDataJson from "../data/releases.json";
 
@@ -18,14 +25,22 @@ const Release = () => {
 
   if (!releaseId || !release) return <div>Error!</div>;
 
-  const { name, releaseDate, tracks } = release;
+  const { name, artistId, artistName, releaseDate, tracks } = release;
 
   return (
     <ReleaseWrapper>
       <ReleaseDetails>
         <ReleaseImage release={release} />
         <ReleaseInfo>
-          <Heading size="h3">{name}</Heading>
+          <Heading size="h5">{name}</Heading>
+          <Text>
+            By{" "}
+            <ButtonLink
+              to={`${ROUTES.artists}/${artistId}`}
+              label={artistName}
+              active
+            />
+          </Text>
           {releaseDate && <Text>Released on {formatDate(releaseDate)}</Text>}
         </ReleaseInfo>
       </ReleaseDetails>
@@ -73,12 +88,12 @@ const ReleaseInfo = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.small};
 
   > :nth-child(2) {
-    margin-bottom: ${({ theme }) => theme.margin.default};
+    margin-bottom: ${({ theme }) => theme.margin.small};
   }
 `;
 
 const ReleaseTracks = styled.div`
-  padding: ${({ theme }) => theme.margin.default};
+  padding: 0 ${({ theme }) => theme.margin.default};
   background: ${({ theme }) => theme.colors.gray};
   border: 1px solid ${({ theme }) => theme.colors.lightGray};
   border-radius: ${({ theme }) => theme.borderRadius.small};

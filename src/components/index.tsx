@@ -2,6 +2,7 @@ import ArtistImage from "./ArtistImage";
 import Avatar from "./Avatar";
 import Button from "./Button";
 import ButtonLink from "./ButtonLink";
+import FeaturingRow from "./FeaturingRow";
 import Heading from "./Heading";
 import Navbar from "./Navbar";
 import Pill from "./Pill";
@@ -17,6 +18,7 @@ export {
   Avatar,
   Button,
   ButtonLink,
+  FeaturingRow,
   Heading,
   Navbar,
   Pill,
