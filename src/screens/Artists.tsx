@@ -9,8 +9,9 @@ import { IArtist } from "../types";
 
 import artistsDataJson from "../data/artists.json";
 
+const artistsData: IArtist[] = artistsDataJson as IArtist[];
+
 const Artists = () => {
-  const artistsData: IArtist[] = artistsDataJson as IArtist[];
   const { data, isLoading, error } = useQuery({
     queryKey: ["artists"],
     queryFn: fetchArtists,

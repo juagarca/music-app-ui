@@ -9,6 +9,15 @@ interface IArtist {
   photoUrl?: string;
 }
 
+interface IFeaturingArtist {
+  artistId: string;
+  artistName: string;
+}
+
+interface IFollowingStatus {
+  status: "following" | "unfollowed";
+}
+
 interface IRelease {
   _id: string;
   name: string;
@@ -28,9 +37,4 @@ interface ITrack {
   featuring: IFeaturingArtist[];
 }
 
-interface IFeaturingArtist {
-  artistId: string;
-  artistName: string;
-}
-
-export type { IArtist, IFeaturingArtist, IRelease, ITrack };
+export type { IArtist, IFeaturingArtist, IFollowingStatus, IRelease, ITrack };

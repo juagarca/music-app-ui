@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { ArtistImage, Button, Heading, ReleaseCard, Text } from "../components";
 
-import { fetchArtist } from "../api";
+import { fetchFollowingStatus, updateFollowing } from "../api";
 import { formatDate } from "../utils";
 import { IArtist, IRelease } from "../types";
 
@@ -13,17 +13,23 @@ import artistsDataJson from "../data/artists.json";
 import releasesDataJson from "../data/releases.json";
 import artistImage from "../assets/artist.png";
 
+const artistsData: IArtist[] = artistsDataJson as IArtist[];
+const releasesData: IRelease[] = releasesDataJson as IRelease[];
+
 const Artist = () => {
   const [followed, setFollowed] = useState(false);
   const { artistId } = useParams();
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["artist"],
-    queryFn: () => fetchArtist(artistId!),
-  });
-  const artistsData: IArtist[] = artistsDataJson as IArtist[];
-  const releasesData: IRelease[] = releasesDataJson as IRelease[];
-
+  const currentUser = "1";
   const artist = artistsData.find((artist: IArtist) => artist._id === artistId);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["followingStatus", currentUser, artistId],
+    queryFn: () => fetchFollowingStatus(currentUser, artistId!),
+    staleTime: 1000,
+  });
+
+  useEffect(() => {
+    data && setFollowed(data.status === "following");
+  }, [data]);
 
   if (!artistId || !artist) return <div>Error!</div>;
 
@@ -32,8 +38,22 @@ const Artist = () => {
     (release: IRelease) => release.artistId === artistId
   );
 
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error || !artistId) return <div>Error!</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (error || !artistId) return <div>Error!</div>;
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const followed = event.currentTarget.innerText === "Following";
+
+    if (followed) {
+      updateFollowing(currentUser, artistId, false);
+      setFollowed(false);
+    } else {
+      updateFollowing(currentUser, artistId, true);
+      setFollowed(true);
+    }
+
+    event.currentTarget.blur();
+  };
 
   return (
     <ArtistWrapper>
@@ -45,10 +65,7 @@ const Artist = () => {
             <Button
               label={followed ? "Following" : "Follow"}
               variant={followed ? "secondary" : "primary"}
-              onClick={(e) => {
-                e.currentTarget.blur();
-                setFollowed(e.currentTarget.innerText === "Follow");
-              }}
+              onClick={handleClick}
             />
           </HeadingWrapper>
           <Text>{name}</Text>

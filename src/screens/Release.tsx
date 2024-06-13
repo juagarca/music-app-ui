@@ -16,9 +16,10 @@ import ROUTES from "../routes";
 
 import releasesDataJson from "../data/releases.json";
 
+const releasesData: IRelease[] = releasesDataJson as IRelease[];
+
 const Release = () => {
   const { releaseId } = useParams();
-  const releasesData: IRelease[] = releasesDataJson as IRelease[];
 
   const release = releasesData.find(
     (release: IRelease) => release._id === releaseId
