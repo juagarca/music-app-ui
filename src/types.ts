@@ -7,6 +7,7 @@ interface IArtist {
   bio?: string;
   members: string[];
   photoUrl?: string;
+  followed: boolean;
 }
 
 interface IFeaturingArtist {
@@ -34,7 +35,8 @@ interface ITrack {
   name: string;
   number: number;
   duration: number;
-  featuring: IFeaturingArtist[];
+  listened: boolean;
+  featuring?: IFeaturingArtist[];
 }
 
 export type { IArtist, IFeaturingArtist, IFollowingStatus, IRelease, ITrack };

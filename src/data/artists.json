@@ -7,7 +7,8 @@
     "placeOfBirth": "California, USA",
     "bio": "Bonnie McKee is an American singer and songwriter.",
     "members": ["Bonnie McKee"],
-    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778282/Bonnie%20McKee.jpg"
+    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778282/Bonnie%20McKee.jpg",
+    "followed": true
   },
   {
     "_id": "2",
@@ -17,7 +18,8 @@
     "placeOfBirth": "Stockholm, Sweden",
     "bio": "Darin Zanyar is a Swedish singer and songwriter.",
     "members": ["Darin"],
-    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778282/Darin_ngpflk.jpg"
+    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778282/Darin_ngpflk.jpg",
+    "followed": true
   },
   {
     "_id": "3",
@@ -27,7 +29,8 @@
     "placeOfBirth": "Cambridge, UK",
     "bio": "Charlotte Emma Aitchison is a British singer and songwriter.",
     "members": ["Charli xcx"],
-    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778280/Charli_XCX_lm5ho6.jpg"
+    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778280/Charli_XCX_lm5ho6.jpg",
+    "followed": false
   },
   {
     "_id": "4",
@@ -37,7 +40,8 @@
     "placeOfBirth": "Indiana, USA",
     "bio": "Adam Mitchel Lambert is an American singer, songwriter and actor.",
     "members": ["Adam Lambert"],
-    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778277/Adam_Lambert_kv45na.jpg"
+    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778277/Adam_Lambert_kv45na.jpg",
+    "followed": true
   },
   {
     "_id": "5",
@@ -47,7 +51,8 @@
     "placeOfBirth": "Rio de Janeiro, Brazil",
     "bio": "Larissa de Macedo Machado is a Brazilian singer, songwriter, dancer, actress and occasional television host.",
     "members": ["Anitta"],
-    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778280/Anitta_m7os81.jpg"
+    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778280/Anitta_m7os81.jpg",
+    "followed": true
   },
   {
     "_id": "6",
@@ -57,7 +62,8 @@
     "placeOfBirth": "Wisconsin, USA",
     "bio": "Amanda Ava Koci is an American singer and songwriter.",
     "members": ["Ava Max"],
-    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778282/Ava_Max_m1lllg.jpg"
+    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778282/Ava_Max_m1lllg.jpg",
+    "followed": true
   },
   {
     "_id": "7",
@@ -67,7 +73,8 @@
     "placeOfBirth": "California, USA",
     "bio": "Rebbeca Marie Gomez is an American singer and actress.",
     "members": ["Becky G"],
-    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778281/Becky_G_addxus.jpg"
+    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778281/Becky_G_addxus.jpg",
+    "followed": true
   },
   {
     "_id": "8",
@@ -77,7 +84,8 @@
     "placeOfBirth": "California, USA",
     "bio": "Ari Staprans Leff is an American singer, songwriter and record producer.",
     "members": ["Lauv"],
-    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778283/Lauv.jpg"
+    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717778283/Lauv.jpg",
+    "followed": true
   },
   {
     "_id": "9",
@@ -86,7 +94,8 @@
     "dateOfBirth": "1991-04-05",
     "placeOfBirth": "Pennsylvania, USA",
     "bio": "Vincint Cannady is an American singer and songwriter.",
-    "members": ["VINCINT"]
+    "members": ["VINCINT"],
+    "followed": true
   },
   {
     "_id": "10",
@@ -95,7 +104,8 @@
     "dateOfBirth": "1987-10-29",
     "placeOfBirth": "Stockholm, Sweden",
     "bio": "Ebba Tove Elsa Nilsson is a Swedish singer and songwriter.",
-    "members": ["Tove Lo"]
+    "members": ["Tove Lo"],
+    "followed": true
   },
   {
     "_id": "11",
@@ -104,6 +114,7 @@
     "dateOfBirth": "1996-01-17",
     "placeOfBirth": "Kuopio, Finland",
     "bio": "Alma-Sofia Miettinen is a Finnish singer and songwriter.",
-    "members": ["ALMA"]
+    "members": ["ALMA"],
+    "followed": true
   }
 ]

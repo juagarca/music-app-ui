@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 
@@ -7,20 +7,19 @@ import { SearchForm, SearchCard } from "../components";
 import { fetchArtists } from "../api";
 import { IArtist } from "../types";
 
-import artistsDataJson from "../data/artists.json";
-
-const artistsData: IArtist[] = artistsDataJson as IArtist[];
-
 const Artists = () => {
+  const [artists, setArtists] = useState<IArtist[]>([]);
   const { data, isLoading, error } = useQuery({
     queryKey: ["artists"],
     queryFn: fetchArtists,
-    initialData: artistsData,
   });
-  const [artists, setArtists] = useState<IArtist[]>(data);
+
+  useEffect(() => {
+    data && setArtists(data);
+  }, [data]);
 
   if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>Error!</div>;
+  if (error) return <div>Error!</div>;
 
   return (
     <ArtistsWrapper>

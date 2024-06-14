@@ -5,55 +5,54 @@ import styled from "styled-components";
 
 import { ArtistImage, Button, Heading, ReleaseCard, Text } from "../components";
 
-import { fetchFollowingStatus, updateFollowing } from "../api";
+import { fetchArtist, fetchReleases, updateFollowed } from "../api";
 import { formatDate } from "../utils";
-import { IArtist, IRelease } from "../types";
+import { IRelease } from "../types";
 
-import artistsDataJson from "../data/artists.json";
-import releasesDataJson from "../data/releases.json";
 import artistImage from "../assets/artist.png";
 
-const artistsData: IArtist[] = artistsDataJson as IArtist[];
-const releasesData: IRelease[] = releasesDataJson as IRelease[];
-
 const Artist = () => {
-  const [followed, setFollowed] = useState(false);
   const { artistId } = useParams();
-  const currentUser = "1";
-  const artist = artistsData.find((artist: IArtist) => artist._id === artistId);
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["followingStatus", currentUser, artistId],
-    queryFn: () => fetchFollowingStatus(currentUser, artistId!),
-    staleTime: 1000,
+  const {
+    data: artistData,
+    isLoading: isLoadingArtist,
+    error: isErrorArtist,
+  } = useQuery({
+    queryKey: ["artist"],
+    queryFn: () => fetchArtist(artistId!),
   });
+  const {
+    data: releasesData,
+    isLoading: isLoadingReleases,
+    error: isErrorReleases,
+  } = useQuery({
+    queryKey: ["releases"],
+    queryFn: () => fetchReleases(artistId!),
+  });
+  const [isFollowed, setIsFollowed] = useState<boolean>(false);
 
   useEffect(() => {
-    data && setFollowed(data.status === "following");
-  }, [data]);
+    artistData && setIsFollowed(artistData.followed);
+  }, [artistData]);
 
-  if (!artistId || !artist) return <div>Error!</div>;
-
-  const { name, artistName, dateOfBirth, placeOfBirth, bio, photoUrl } = artist;
-  const releases = releasesData.filter(
-    (release: IRelease) => release.artistId === artistId
-  );
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error || !artistId) return <div>Error!</div>;
+  if (isLoadingArtist || isLoadingReleases) return <div>Loading...</div>;
+  if (isErrorArtist || isErrorReleases || !artistData || !releasesData)
+    return <div>Error!</div>;
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const followed = event.currentTarget.innerText === "Following";
-
-    if (followed) {
-      updateFollowing(currentUser, artistId, false);
-      setFollowed(false);
-    } else {
-      updateFollowing(currentUser, artistId, true);
-      setFollowed(true);
-    }
-
     event.currentTarget.blur();
+
+    if (isFollowed) {
+      updateFollowed(artistId!, false);
+      setIsFollowed(false);
+    } else {
+      updateFollowed(artistId!, true);
+      setIsFollowed(true);
+    }
   };
+
+  const { photoUrl, artistName, name, dateOfBirth, placeOfBirth, bio } =
+    artistData;
 
   return (
     <ArtistWrapper>
@@ -63,8 +62,8 @@ const Artist = () => {
           <HeadingWrapper>
             <Heading>{artistName}</Heading>
             <Button
-              label={followed ? "Following" : "Follow"}
-              variant={followed ? "secondary" : "primary"}
+              label={isFollowed ? "Following" : "Follow"}
+              variant={isFollowed ? "secondary" : "primary"}
               onClick={handleClick}
             />
           </HeadingWrapper>
@@ -75,8 +74,8 @@ const Artist = () => {
         </ArtistDetails>
         <Heading size="h5">Releases</Heading>
         <ArtistReleases>
-          {releases.length ? (
-            releases.map((release: IRelease) => (
+          {releasesData.length ? (
+            releasesData.map((release: IRelease) => (
               <ReleaseCard release={release} key={release._id} />
             ))
           ) : (

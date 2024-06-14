@@ -32,7 +32,8 @@ const ReleaseCard = ({ release }: ReleaseCardProps) => {
 
 const ReleaseCardWrapper = styled.div`
   display: flex;
-  height: 7rem;
+  align-items: center;
+  height: auto;
   background: ${({ theme }) => theme.colors.gray};
   border: 1px solid ${({ theme }) => theme.colors.lightGray};
   border-radius: ${({ theme }) => theme.borderRadius.small};
@@ -46,6 +47,9 @@ const ReleaseCardWrapper = styled.div`
 `;
 
 const Image = styled.img`
+  height: 100%;
+  // TODO: make width dynamic
+  width: 7rem;
   border-top-left-radius: ${({ theme }) => theme.borderRadius.small};
   border-bottom-left-radius: ${({ theme }) => theme.borderRadius.small};
 `;
@@ -55,7 +59,6 @@ const ReleaseCardDetails = styled.div`
 
   p {
     font-size: ${({ theme }) => theme.fontSize.small};
-    // margin-bottom: ${({ theme }) => theme.margin.small};
   }
 `;
 

@@ -12,7 +12,8 @@
       {
         "name": "Moonlight",
         "number": 1,
-        "duration": 156
+        "duration": 156,
+        "listened": false
       }
     ]
   },
@@ -29,77 +30,92 @@
       {
         "name": "360",
         "number": 1,
-        "duration": 134
+        "duration": 134,
+        "listened": true
       },
       {
         "name": "Club classics",
         "number": 2,
-        "duration": 154
+        "duration": 154,
+        "listened": true
       },
       {
         "name": "Sympathy is a knife",
         "number": 3,
-        "duration": 151
+        "duration": 151,
+        "listened": true
       },
       {
         "name": "I might say something stupid",
         "number": 4,
-        "duration": 109
+        "duration": 109,
+        "listened": true
       },
       {
         "name": "Talk talk",
         "number": 5,
-        "duration": 162
+        "duration": 162,
+        "listened": true
       },
       {
         "name": "Von dutch",
         "number": 6,
-        "duration": 164
+        "duration": 164,
+        "listened": true
       },
       {
         "name": "Everything is romantic",
         "number": 7,
-        "duration": 134
+        "duration": 134,
+        "listened": true
       },
       {
         "name": "Rewind",
         "number": 8,
-        "duration": 203
+        "duration": 203,
+        "listened": true
       },
       {
         "name": "So I",
         "number": 9,
-        "duration": 211
+        "duration": 211,
+        "listened": true
       },
       {
         "name": "Girl, so confusing",
         "number": 10,
-        "duration": 175
+        "duration": 175,
+        "listened": true
       },
       {
         "name": "Apple",
         "number": 11,
-        "duration": 152
+        "duration": 152,
+        "listened": true
       },
       {
         "name": "B2b",
         "number": 12,
-        "duration": 179
+        "duration": 179,
+        "listened": true
       },
       {
         "name": "Mean girls",
         "number": 13,
-        "duration": 189
+        "duration": 189,
+        "listened": true
       },
       {
         "name": "I think about it all the time",
         "number": 14,
-        "duration": 136
+        "duration": 136,
+        "listened": true
       },
       {
         "name": "365",
         "number": 15,
-        "duration": 204
+        "duration": 204,
+        "listened": true
       }
     ]
   },
@@ -116,12 +132,14 @@
       {
         "name": "LUBE",
         "number": 1,
-        "duration": 167
+        "duration": 167,
+        "listened": true
       },
       {
         "name": "WET DREAM",
         "number": 2,
-        "duration": 179
+        "duration": 179,
+        "listened": true
       }
     ]
   },
@@ -139,6 +157,7 @@
         "name": "Another Lover",
         "number": 1,
         "duration": 183,
+        "listened": true,
         "featuring": [
           {
             "artistId": "4",
@@ -162,6 +181,7 @@
         "name": "Out Of My Head",
         "number": 1,
         "duration": 236,
+        "listened": true,
         "featuring": [
           {
             "artistId": "10",

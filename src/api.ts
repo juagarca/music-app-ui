@@ -1,50 +1,42 @@
-import axios from "axios";
+// import axios from "axios";
 
-import { IArtist, IFollowingStatus } from "./types";
+import { IRelease } from "./types";
+
+import artistsDataJson from "./data/artists.json";
+import releasesDataJson from "./data/releases.json";
 
 const fetchArtist = async (artistId: string) => {
-  const response = await axios.get<IArtist>(
-    `http://localhost:8000/artists/${artistId}`
-  );
+  if (process.env.NODE_ENV !== "production") {
+    return artistsDataJson.find((artist) => artist._id === artistId);
+  }
 
-  return response.data;
+  // const response = await axios.get<IArtist>(
+  //   `http://localhost:8000/artists/${artistId}`
+  // );
+  // return response.data;
 };
 
 const fetchArtists = async () => {
-  const response = await axios.get<IArtist[]>("http://localhost:8000/artists");
+  if (process.env.NODE_ENV !== "production") {
+    return artistsDataJson;
+  }
 
-  return response.data;
+  // const response = await axios.get<IArtist[]>("http://localhost:8000/artists");
+  // return response.data;
 };
 
-const fetchFollowingStatus = async (userId: string, artistId: string) => {
-  const response = await axios.get<IFollowingStatus>(
-    `http://localhost:8000/following`,
-    {
-      params: {
-        userId: userId,
-        artistId: artistId,
-      },
-    }
-  );
-
-  return response.data;
+const fetchReleases = async (artistId: string) => {
+  const releasesData = releasesDataJson as IRelease[];
+  if (process.env.NODE_ENV !== "production") {
+    return releasesData.filter((release) => release.artistId === artistId);
+  }
 };
 
-const updateFollowing = async (
-  currentUser: string,
-  artistId: string,
-  follow: boolean
-) => {
-  const response = await axios.patch<IArtist[]>(
-    "http://localhost:8000/following/update",
-    {
-      userId: currentUser,
-      artistId: artistId,
-      follow: follow,
-    }
-  );
-
-  return response.data;
+const updateFollowed = async (artistId: string, followed: boolean) => {
+  // TODO: Make this work with local environment.
+  if (process.env.NODE_ENV !== "production") {
+    return artistsDataJson.find((artist) => artist._id === artistId);
+  }
 };
 
-export { fetchArtist, fetchArtists, fetchFollowingStatus, updateFollowing };
+export { fetchArtist, fetchArtists, fetchReleases, updateFollowed };
