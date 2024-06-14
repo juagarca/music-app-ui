@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { IArtist, IRelease, ITrack } from "./types";
+import { IArtist, IListRelease, IRelease, ITrack } from "./types";
 
 const fetchArtist = async (artistId: string) => {
   const response = await axios.get<IArtist>(
@@ -13,6 +13,14 @@ const fetchArtist = async (artistId: string) => {
 const fetchArtists = async (query: string = "") => {
   const response = await axios.get<IArtist[]>(
     `http://localhost:8000/artists?query=${query}`
+  );
+
+  return response.data;
+};
+
+const fetchList = async () => {
+  const response = await axios.get<IListRelease[]>(
+    `http://localhost:8000/list`
   );
 
   return response.data;
@@ -61,6 +69,7 @@ const updateTrackListened = async (trackId: string, listened: boolean) => {
 export {
   fetchArtist,
   fetchArtists,
+  fetchList,
   fetchRelease,
   fetchReleases,
   fetchTracks,

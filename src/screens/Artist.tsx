@@ -15,16 +15,16 @@ const Artist = () => {
   const { artistId } = useParams();
   const {
     data: artistData,
-    isLoading: isLoadingArtist,
-    error: isErrorArtist,
+    isLoading: artistIsLoading,
+    error: artistError,
   } = useQuery({
     queryKey: ["artist"],
     queryFn: () => fetchArtist(artistId!),
   });
   const {
     data: releasesData,
-    isLoading: isLoadingReleases,
-    error: isErrorReleases,
+    isLoading: releasesIsLoading,
+    error: releasesError,
   } = useQuery({
     queryKey: ["releases"],
     queryFn: () => fetchReleases(artistId!),
@@ -35,8 +35,8 @@ const Artist = () => {
     artistData && setIsFollowed(artistData.followed);
   }, [artistData]);
 
-  if (isLoadingArtist || isLoadingReleases) return <div>Loading...</div>;
-  if (isErrorArtist || isErrorReleases || !artistData || !releasesData)
+  if (artistIsLoading || releasesIsLoading) return <div>Loading...</div>;
+  if (artistError || releasesError || !artistData || !releasesData)
     return <div>Error!</div>;
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

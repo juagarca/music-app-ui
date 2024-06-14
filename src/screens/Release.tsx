@@ -20,29 +20,23 @@ const Release = () => {
   const { releaseId } = useParams();
   const {
     data: releaseData,
-    isLoading: isLoadingRelease,
-    error: isErrorRelease,
+    isLoading: releaseIsLoading,
+    error: releaseError,
   } = useQuery({
     queryKey: ["release"],
     queryFn: () => fetchRelease(releaseId!),
   });
   const {
     data: tracksData,
-    isLoading: isLoadingTracks,
-    error: isErrorTracks,
+    isLoading: tracksIsLoading,
+    error: tracksError,
   } = useQuery({
     queryKey: ["tracks", releaseId],
     queryFn: () => fetchTracks(releaseId!),
   });
 
-  if (isLoadingRelease || isLoadingTracks) return <div>Loading...</div>;
-  if (
-    !releaseId ||
-    !releaseData ||
-    !tracksData ||
-    isErrorRelease ||
-    isErrorTracks
-  )
+  if (releaseIsLoading || tracksIsLoading) return <div>Loading...</div>;
+  if (!releaseId || !releaseData || !tracksData || releaseError || tracksError)
     return <div>Error!</div>;
 
   const { name, artistId, artistName, releaseDate, duration, numberOfTracks } =

@@ -10,6 +10,10 @@ interface IArtist {
   followed: boolean;
 }
 
+interface IListRelease extends IRelease {
+  tracks: ITrack[];
+}
+
 interface IFeaturingArtist {
   artistId: string;
   artistName: string;
@@ -37,4 +41,4 @@ interface ITrack {
   featuring?: IFeaturingArtist[];
 }
 
-export type { IArtist, IFeaturingArtist, IRelease, ITrack };
+export type { IArtist, IListRelease, IFeaturingArtist, IRelease, ITrack };
