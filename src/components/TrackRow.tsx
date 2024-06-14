@@ -6,6 +6,7 @@ import { Check, Cross } from "../icons";
 
 import { ITrack } from "../types";
 import { formatSeconds } from "../utils";
+import { updateTrackListened } from "../api";
 
 interface TrackCardProps {
   track: ITrack;
@@ -13,17 +14,17 @@ interface TrackCardProps {
 }
 
 const TrackRow = ({ track, border = true }: TrackCardProps) => {
-  const { name, number, duration, featuring, listened } = track;
+  const { _id, name, number, duration, featuring, listened } = track;
   const [isListened, setIsListened] = useState(listened);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.currentTarget.blur();
 
     if (isListened) {
-      // updateFollowed(artistId!, false);
+      updateTrackListened(_id, false);
       setIsListened(false);
     } else {
-      // updateFollowed(artistId!, true);
+      updateTrackListened(_id, true);
       setIsListened(true);
     }
   };

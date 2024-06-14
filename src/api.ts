@@ -50,6 +50,14 @@ const updateArtistFollowed = async (artistId: string, followed: boolean) => {
   return response.data;
 };
 
+const updateTrackListened = async (trackId: string, listened: boolean) => {
+  const response = await axios.patch<IArtist>(
+    `http://localhost:8000/tracks/${trackId}?listened=${listened}`
+  );
+
+  return response.data;
+};
+
 export {
   fetchArtist,
   fetchArtists,
@@ -57,4 +65,5 @@ export {
   fetchReleases,
   fetchTracks,
   updateArtistFollowed,
+  updateTrackListened,
 };
