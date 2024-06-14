@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { ArtistImage, Button, Heading, ReleaseCard, Text } from "../components";
 
-import { fetchArtist, fetchReleases, updateFollowed } from "../api";
+import { fetchArtist, fetchReleases, updateArtistFollowed } from "../api";
 import { formatDate } from "../utils";
 import { IRelease } from "../types";
 
@@ -43,10 +43,10 @@ const Artist = () => {
     event.currentTarget.blur();
 
     if (isFollowed) {
-      updateFollowed(artistId!, false);
+      updateArtistFollowed(artistId!, false);
       setIsFollowed(false);
     } else {
-      updateFollowed(artistId!, true);
+      updateArtistFollowed(artistId!, true);
       setIsFollowed(true);
     }
   };
