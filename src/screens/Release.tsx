@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 import pluralize from "pluralize";
 
@@ -10,29 +11,47 @@ import {
   TrackRow,
 } from "../components";
 
-import { IRelease, ITrack } from "../types";
+import { ITrack } from "../types";
 import { formatDate, formatSeconds } from "../utils";
+import { fetchRelease, fetchTracks } from "../api";
 import ROUTES from "../routes";
-
-import releasesDataJson from "../data/releases.json";
-
-const releasesData: IRelease[] = releasesDataJson as IRelease[];
 
 const Release = () => {
   const { releaseId } = useParams();
+  const {
+    data: releaseData,
+    isLoading: isLoadingRelease,
+    error: isErrorRelease,
+  } = useQuery({
+    queryKey: ["release"],
+    queryFn: () => fetchRelease(releaseId!),
+  });
+  const {
+    data: tracksData,
+    isLoading: isLoadingTracks,
+    error: isErrorTracks,
+  } = useQuery({
+    queryKey: ["tracks", releaseId],
+    queryFn: () => fetchTracks(releaseId!),
+  });
 
-  const release = releasesData.find(
-    (release: IRelease) => release._id === releaseId
-  );
+  if (isLoadingRelease || isLoadingTracks) return <div>Loading...</div>;
+  if (
+    !releaseId ||
+    !releaseData ||
+    !tracksData ||
+    isErrorRelease ||
+    isErrorTracks
+  )
+    return <div>Error!</div>;
 
-  if (!releaseId || !release) return <div>Error!</div>;
-
-  const { name, artistId, artistName, releaseDate, duration, tracks } = release;
+  const { name, artistId, artistName, releaseDate, duration, numberOfTracks } =
+    releaseData;
 
   return (
     <ReleaseWrapper>
       <ReleaseDetails>
-        <ReleaseImage release={release} />
+        <ReleaseImage release={releaseData} />
         <ReleaseInfo>
           <Heading size="h5">{name}</Heading>
           <Text>
@@ -44,9 +63,9 @@ const Release = () => {
             />
           </Text>
           <Text>
-            {`${tracks.length} ${pluralize(
+            {`${numberOfTracks} ${pluralize(
               "song",
-              tracks.length
+              numberOfTracks
             )} - ${formatSeconds(duration)}`}{" "}
           </Text>
           <Text>Release date: {formatDate(releaseDate)}</Text>
@@ -55,10 +74,10 @@ const Release = () => {
       <ReleaseTracksDetails>
         <Heading size="h5">Songs</Heading>
         <ReleaseTracks>
-          {tracks.map((track: ITrack) => (
+          {tracksData.map((track: ITrack) => (
             <TrackRow
               track={track}
-              border={track.number !== tracks.length}
+              border={track.number !== numberOfTracks}
               key={track.number}
             />
           ))}

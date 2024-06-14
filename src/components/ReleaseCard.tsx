@@ -15,14 +15,15 @@ interface ReleaseCardProps {
 
 const ReleaseCard = ({ release }: ReleaseCardProps) => {
   const navigate = useNavigate();
-  const { _id, name, releaseDate, duration, photoUrl, tracks } = release;
+  const { _id, name, releaseDate, duration, numberOfTracks, photoUrl } =
+    release;
 
   return (
     <ReleaseCardWrapper onClick={() => navigate(`${ROUTES.releases}/${_id}`)}>
       <Image src={photoUrl ? photoUrl : releaseImage} alt={name} />
       <ReleaseCardDetails>
         <Heading size="h5">{name}</Heading>
-        <Text>{`${tracks.length} ${pluralize("song", tracks.length)}`}</Text>
+        <Text>{`${numberOfTracks} ${pluralize("song", numberOfTracks)}`}</Text>
         <Text>{formatSeconds(duration)}</Text>
         {releaseDate && <Text>{formatDate(releaseDate)}</Text>}
       </ReleaseCardDetails>

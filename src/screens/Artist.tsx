@@ -62,7 +62,7 @@ const Artist = () => {
           <HeadingWrapper>
             <Heading>{artistName}</Heading>
             <Button
-              label={isFollowed ? "Following" : "Follow"}
+              label={isFollowed ? "Unfollow" : "Follow"}
               variant={isFollowed ? "secondary" : "primary"}
               onClick={handleClick}
             />

@@ -15,10 +15,6 @@ interface IFeaturingArtist {
   artistName: string;
 }
 
-interface IFollowingStatus {
-  status: "following" | "unfollowed";
-}
-
 interface IRelease {
   _id: string;
   name: string;
@@ -27,11 +23,13 @@ interface IRelease {
   type: "ALBUM" | "EP" | "MIXTAPE" | "SINGLE";
   releaseDate: string;
   duration: number;
+  numberOfTracks: number;
   photoUrl?: string;
-  tracks: ITrack[];
 }
 
 interface ITrack {
+  _id: string;
+  releaseId: string;
   name: string;
   number: number;
   duration: number;
@@ -39,4 +37,4 @@ interface ITrack {
   featuring?: IFeaturingArtist[];
 }
 
-export type { IArtist, IFeaturingArtist, IFollowingStatus, IRelease, ITrack };
+export type { IArtist, IFeaturingArtist, IRelease, ITrack };

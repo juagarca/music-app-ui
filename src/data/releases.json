@@ -7,15 +7,8 @@
     "type": "SINGLE",
     "releaseDate": "2024-05-24",
     "duration": 156,
-    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717855442/releases/moonlight.jpg",
-    "tracks": [
-      {
-        "name": "Moonlight",
-        "number": 1,
-        "duration": 156,
-        "listened": false
-      }
-    ]
+    "numberOfTracks": 1,
+    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1717855442/releases/moonlight.jpg"
   },
   {
     "_id": "2",
@@ -25,99 +18,8 @@
     "type": "ALBUM",
     "releaseDate": "2024-05-08",
     "duration": 2523,
-    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1718129671/releases/charli-xcx-brat_kvpur9.jpg",
-    "tracks": [
-      {
-        "name": "360",
-        "number": 1,
-        "duration": 134,
-        "listened": true
-      },
-      {
-        "name": "Club classics",
-        "number": 2,
-        "duration": 154,
-        "listened": true
-      },
-      {
-        "name": "Sympathy is a knife",
-        "number": 3,
-        "duration": 151,
-        "listened": true
-      },
-      {
-        "name": "I might say something stupid",
-        "number": 4,
-        "duration": 109,
-        "listened": true
-      },
-      {
-        "name": "Talk talk",
-        "number": 5,
-        "duration": 162,
-        "listened": true
-      },
-      {
-        "name": "Von dutch",
-        "number": 6,
-        "duration": 164,
-        "listened": true
-      },
-      {
-        "name": "Everything is romantic",
-        "number": 7,
-        "duration": 134,
-        "listened": true
-      },
-      {
-        "name": "Rewind",
-        "number": 8,
-        "duration": 203,
-        "listened": true
-      },
-      {
-        "name": "So I",
-        "number": 9,
-        "duration": 211,
-        "listened": true
-      },
-      {
-        "name": "Girl, so confusing",
-        "number": 10,
-        "duration": 175,
-        "listened": true
-      },
-      {
-        "name": "Apple",
-        "number": 11,
-        "duration": 152,
-        "listened": true
-      },
-      {
-        "name": "B2b",
-        "number": 12,
-        "duration": 179,
-        "listened": true
-      },
-      {
-        "name": "Mean girls",
-        "number": 13,
-        "duration": 189,
-        "listened": true
-      },
-      {
-        "name": "I think about it all the time",
-        "number": 14,
-        "duration": 136,
-        "listened": true
-      },
-      {
-        "name": "365",
-        "number": 15,
-        "duration": 204,
-        "listened": true
-      }
-    ]
+    "numberOfTracks": 15,
+    "photoUrl": "https://res.cloudinary.com/dfe3d8qmn/image/upload/fl_preserve_transparency/v1718129671/releases/charli-xcx-brat_kvpur9.jpg"
   },
   {
     "_id": "3",
@@ -127,21 +29,8 @@
     "type": "EP",
     "releaseDate": "2024-05-31",
     "duration": 346,
-    "photoUrl": "",
-    "tracks": [
-      {
-        "name": "LUBE",
-        "number": 1,
-        "duration": 167,
-        "listened": true
-      },
-      {
-        "name": "WET DREAM",
-        "number": 2,
-        "duration": 179,
-        "listened": true
-      }
-    ]
+    "numberOfTracks": 2,
+    "photoUrl": ""
   },
   {
     "_id": "4",
@@ -151,21 +40,8 @@
     "type": "SINGLE",
     "releaseDate": "2024-05-17",
     "duration": 183,
-    "photoUrl": "",
-    "tracks": [
-      {
-        "name": "Another Lover",
-        "number": 1,
-        "duration": 183,
-        "listened": true,
-        "featuring": [
-          {
-            "artistId": "4",
-            "artistName": "Adam Lambert"
-          }
-        ]
-      }
-    ]
+    "numberOfTracks": 1,
+    "photoUrl": ""
   },
   {
     "_id": "5",
@@ -175,24 +51,7 @@
     "type": "MIXTAPE",
     "releaseDate": "2017-12-15",
     "duration": 474,
-    "photoUrl": "",
-    "tracks": [
-      {
-        "name": "Out Of My Head",
-        "number": 1,
-        "duration": 236,
-        "listened": true,
-        "featuring": [
-          {
-            "artistId": "10",
-            "artistName": "Tove Lo"
-          },
-          {
-            "artistId": "11",
-            "artistName": "ALMA"
-          }
-        ]
-      }
-    ]
+    "numberOfTracks": 10,
+    "photoUrl": ""
   }
 ]

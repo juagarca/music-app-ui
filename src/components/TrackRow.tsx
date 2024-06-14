@@ -13,8 +13,20 @@ interface TrackCardProps {
 }
 
 const TrackRow = ({ track, border = true }: TrackCardProps) => {
-  const [listened, setListened] = useState(false);
-  const { name, number, duration, featuring } = track;
+  const { name, number, duration, featuring, listened } = track;
+  const [isListened, setIsListened] = useState(listened);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.currentTarget.blur();
+
+    if (isListened) {
+      // updateFollowed(artistId!, false);
+      setIsListened(false);
+    } else {
+      // updateFollowed(artistId!, true);
+      setIsListened(true);
+    }
+  };
 
   return (
     <TrackRowWrapper $border={border}>
@@ -25,13 +37,10 @@ const TrackRow = ({ track, border = true }: TrackCardProps) => {
         {featuring && <FeaturingRow featuring={featuring} />}
       </TrackRowDetails>
       <Button
-        variant={listened ? "secondary" : "primary"}
-        onClick={(e) => {
-          e.currentTarget.blur();
-          setListened(true);
-        }}
+        variant={isListened ? "secondary" : "primary"}
+        onClick={handleClick}
       >
-        {listened ? <Cross /> : <Check />}
+        {isListened ? <Cross /> : <Check />}
       </Button>
     </TrackRowWrapper>
   );
