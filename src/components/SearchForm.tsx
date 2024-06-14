@@ -6,7 +6,7 @@ import { Magnifier } from "../icons";
 
 import ROUTES from "../routes";
 import { IArtist } from "../types";
-import artistsData from "../data/artists.json";
+import { fetchArtists } from "../api";
 
 interface SearchFormProps {
   setArtists: React.Dispatch<React.SetStateAction<IArtist[]>>;
@@ -15,18 +15,11 @@ interface SearchFormProps {
 const SearchForm = ({ setArtists }: SearchFormProps) => {
   const [value, setValue] = useState<string>("");
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setValue(value);
-
-    if (value === "") {
-      setArtists(artistsData as IArtist[]);
-    }
-
-    const filteredArtists = artistsData.filter((artist) =>
-      artist.artistName?.toLowerCase().includes(value.toLowerCase())
-    );
-    setArtists(filteredArtists);
+    const artists = await fetchArtists(value);
+    setArtists(artists);
   };
 
   return (

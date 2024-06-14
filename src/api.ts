@@ -10,8 +10,10 @@ const fetchArtist = async (artistId: string) => {
   return response.data;
 };
 
-const fetchArtists = async () => {
-  const response = await axios.get<IArtist[]>("http://localhost:8000/artists");
+const fetchArtists = async (query: string = "") => {
+  const response = await axios.get<IArtist[]>(
+    `http://localhost:8000/artists?query=${query}`
+  );
 
   return response.data;
 };

@@ -11,7 +11,7 @@ const Artists = () => {
   const [artists, setArtists] = useState<IArtist[]>([]);
   const { data, isLoading, error } = useQuery({
     queryKey: ["artists"],
-    queryFn: fetchArtists,
+    queryFn: () => fetchArtists(),
   });
 
   useEffect(() => {
