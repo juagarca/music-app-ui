@@ -18,14 +18,6 @@ const fetchArtists = async (query: string = "") => {
   return response.data;
 };
 
-const fetchList = async () => {
-  const response = await axios.get<IListRelease[]>(
-    `http://localhost:8000/list`
-  );
-
-  return response.data;
-};
-
 const fetchRelease = async (releaseId: string) => {
   const response = await axios.get<IRelease>(
     `http://localhost:8000/releases/${releaseId}`
@@ -37,6 +29,22 @@ const fetchRelease = async (releaseId: string) => {
 const fetchReleases = async (artistId: string) => {
   const response = await axios.get<IRelease[]>(
     `http://localhost:8000/releases?artistId=${artistId}`
+  );
+
+  return response.data;
+};
+
+const fetchPendingReleases = async () => {
+  const response = await axios.get<IListRelease[]>(
+    `http://localhost:8000/releases/pending`
+  );
+
+  return response.data;
+};
+
+const fetchUpcomingReleases = async () => {
+  const response = await axios.get<IListRelease[]>(
+    `http://localhost:8000/releases/upcoming`
   );
 
   return response.data;
@@ -69,9 +77,10 @@ const updateTrackListened = async (trackId: string, listened: boolean) => {
 export {
   fetchArtist,
   fetchArtists,
-  fetchList,
   fetchRelease,
   fetchReleases,
+  fetchPendingReleases,
+  fetchUpcomingReleases,
   fetchTracks,
   updateArtistFollowed,
   updateTrackListened,

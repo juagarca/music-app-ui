@@ -56,13 +56,15 @@ const Release = () => {
               active
             />
           </Text>
-          <Text>
-            {`${numberOfTracks} ${pluralize(
-              "song",
-              numberOfTracks
-            )} - ${formatSeconds(duration)}`}{" "}
-          </Text>
-          <Text>Release date: {formatDate(releaseDate)}</Text>
+          {duration && (
+            <Text>
+              {`${numberOfTracks} ${pluralize(
+                "song",
+                numberOfTracks
+              )} - ${formatSeconds(duration)}`}{" "}
+            </Text>
+          )}
+          {releaseDate && <Text>Release date: {formatDate(releaseDate)}</Text>}
         </ReleaseInfo>
       </ReleaseDetails>
       <ReleaseTracksDetails>

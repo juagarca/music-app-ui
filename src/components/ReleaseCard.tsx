@@ -23,8 +23,13 @@ const ReleaseCard = ({ release }: ReleaseCardProps) => {
       <Image src={photoUrl ? photoUrl : releaseImage} alt={name} />
       <ReleaseCardDetails>
         <Heading size="h5">{name}</Heading>
-        <Text>{`${numberOfTracks} ${pluralize("song", numberOfTracks)}`}</Text>
-        <Text>{formatSeconds(duration)}</Text>
+        {numberOfTracks && (
+          <Text>{`${numberOfTracks} ${pluralize(
+            "song",
+            numberOfTracks
+          )}`}</Text>
+        )}
+        {duration && <Text>{formatSeconds(duration)}</Text>}
         {releaseDate && <Text>{formatDate(releaseDate)}</Text>}
       </ReleaseCardDetails>
     </ReleaseCardWrapper>
