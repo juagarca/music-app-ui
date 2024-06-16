@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 
-import { Heading, ReleaseCard, TrackRow } from "../components";
+import { Heading, ListReleaseCard, ReleaseCard } from "../components";
 
 import { fetchPendingReleases, fetchUpcomingReleases } from "../api";
-import { ITrack, IListRelease } from "../types";
+import { IListRelease } from "../types";
 
 const List = () => {
   const [pendingList, setPendingList] = useState<IListRelease[]>();
@@ -46,20 +46,12 @@ const List = () => {
 
   return (
     <ListWrapper>
-      <Heading>Releases</Heading>
       <ReleasesWrapper>
         <PendingListWrapper>
           <Heading size="h3">Pending</Heading>
           {pendingList.map((release) => (
             <React.Fragment key={release._id}>
-              <ReleaseCard release={release} />
-              {release.tracks.map((track: ITrack, index: number) => (
-                <TrackRow
-                  track={track}
-                  key={track.number}
-                  border={index !== release.tracks.length - 1}
-                />
-              ))}
+              <ListReleaseCard release={release} />
             </React.Fragment>
           ))}
         </PendingListWrapper>
@@ -75,8 +67,11 @@ const List = () => {
 };
 
 const ListWrapper = styled.div`
-  text-align: center;
   padding: ${({ theme }) => theme.margin.default};
+
+  > :first-child {
+    text-align: center;
+  }
 `;
 
 const ReleasesWrapper = styled.div`
@@ -85,8 +80,16 @@ const ReleasesWrapper = styled.div`
   grid-gap: ${({ theme }) => theme.margin.default};
 `;
 
-const PendingListWrapper = styled.div``;
+const PendingListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
 
-const UpcomingListWrapper = styled.div``;
+const UpcomingListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
 
 export default List;

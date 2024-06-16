@@ -4,6 +4,7 @@ import Button from "./Button";
 import ButtonLink from "./ButtonLink";
 import FeaturingRow from "./FeaturingRow";
 import Heading from "./Heading";
+import ListReleaseCard from "./ListReleaseCard";
 import Navbar from "./Navbar";
 import Pill from "./Pill";
 import ReleaseCard from "./ReleaseCard";
@@ -20,6 +21,7 @@ export {
   ButtonLink,
   FeaturingRow,
   Heading,
+  ListReleaseCard,
   Navbar,
   Pill,
   ReleaseCard,

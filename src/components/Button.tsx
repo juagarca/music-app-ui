@@ -28,9 +28,7 @@ const ButtonWrapper = styled.button<{ $variant: string }>`
   color: ${({ theme, $variant }) =>
     $variant === "primary" ? theme.colors.white : theme.colors.lightGray};
   background: ${({ theme }) => theme.colors.black};
-  border: 1px solid
-    ${({ theme, $variant }) =>
-      $variant === "primary" ? theme.colors.white : theme.colors.lightGray};
+  border: 1px solid ${({ theme }) => theme.colors.lightGray};
   border-radius: ${({ theme }) => theme.borderRadius.big};
   transition: all 0.25s ease;
   cursor: pointer;
