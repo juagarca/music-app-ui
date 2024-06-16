@@ -2,76 +2,60 @@ import axios from "axios";
 
 import { IArtist, IListRelease, IRelease, ITrack } from "./types";
 
-const fetchArtist = async (artistId: string) => {
-  const response = await axios.get<IArtist>(
-    `http://localhost:8000/artists/${artistId}`
-  );
+const apiCall = async <Type>(path: string, verb: string = "get") => {
+  const url = `${process.env.REACT_APP_API_URL}/${path}`;
 
-  return response.data;
+  try {
+    const response = await axios.request<Type>({ url: url, method: verb });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const fetchArtist = async (artistId: string) => {
+  const path = `artists/${artistId}`;
+  return apiCall<IArtist>(path);
 };
 
 const fetchArtists = async (query: string = "") => {
-  const response = await axios.get<IArtist[]>(
-    `http://localhost:8000/artists?query=${query}`
-  );
-
-  return response.data;
+  const path = `artists?query=${query}`;
+  return apiCall<IArtist[]>(path);
 };
 
 const fetchRelease = async (releaseId: string) => {
-  const response = await axios.get<IRelease>(
-    `http://localhost:8000/releases/${releaseId}`
-  );
-
-  return response.data;
+  const path = `releases/${releaseId}`;
+  return apiCall<IRelease>(path);
 };
 
 const fetchReleases = async (artistId: string) => {
-  const response = await axios.get<IRelease[]>(
-    `http://localhost:8000/releases?artistId=${artistId}`
-  );
-
-  return response.data;
+  const path = `releases?artistId=${artistId}`;
+  return apiCall<IRelease[]>(path);
 };
 
 const fetchPendingReleases = async () => {
-  const response = await axios.get<IListRelease[]>(
-    `http://localhost:8000/releases/pending`
-  );
-
-  return response.data;
+  const path = `releases/pending`;
+  return apiCall<IListRelease[]>(path);
 };
 
 const fetchUpcomingReleases = async () => {
-  const response = await axios.get<IListRelease[]>(
-    `http://localhost:8000/releases/upcoming`
-  );
-
-  return response.data;
+  const path = `releases/upcoming`;
+  return apiCall<IListRelease[]>(path);
 };
 
 const fetchTracks = async (releaseId: string) => {
-  const response = await axios.get<ITrack[]>(
-    `http://localhost:8000/tracks?releaseId=${releaseId}`
-  );
-
-  return response.data;
+  const path = `tracks?releaseId=${releaseId}`;
+  return apiCall<ITrack[]>(path);
 };
 
 const updateArtistFollowed = async (artistId: string, followed: boolean) => {
-  const response = await axios.patch<IArtist>(
-    `http://localhost:8000/artists/${artistId}?followed=${followed}`
-  );
-
-  return response.data;
+  const path = `artists/${artistId}?followed=${followed}`;
+  return apiCall<IArtist>(path, "patch");
 };
 
 const updateTrackListened = async (trackId: string, listened: boolean) => {
-  const response = await axios.patch<IArtist>(
-    `http://localhost:8000/tracks/${trackId}?listened=${listened}`
-  );
-
-  return response.data;
+  const path = `tracks/${trackId}?listened=${listened}`;
+  return apiCall<ITrack>(path, "patch");
 };
 
 export {

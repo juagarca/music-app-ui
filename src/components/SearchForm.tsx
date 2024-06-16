@@ -19,7 +19,7 @@ const SearchForm = ({ setArtists }: SearchFormProps) => {
     const value = event.target.value;
     setValue(value);
     const artists = await fetchArtists(value);
-    setArtists(artists);
+    artists && setArtists(artists);
   };
 
   return (
