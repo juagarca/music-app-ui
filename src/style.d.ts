@@ -29,11 +29,12 @@ declare module "styled-components" {
       h5: string;
       h6: string;
       body: string;
-      small: string;
       extraSmall: string;
+      small: string;
     };
 
     margin: {
+      extraSmall: string;
       small: string;
       default: string;
     };

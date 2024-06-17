@@ -28,11 +28,12 @@ const theme: DefaultTheme = {
     h5: "1.5rem",
     h6: "1rem",
     body: "1rem",
-    small: "0.8rem",
     extraSmall: "0.5rem",
+    small: "0.8rem",
   },
 
   margin: {
+    extraSmall: "0.3rem",
     small: "0.5rem",
     default: "1rem",
   },

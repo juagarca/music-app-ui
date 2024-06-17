@@ -23,6 +23,7 @@ const ButtonLink = ({
 
 const LinkWrapper = styled(Link)<{ $active: boolean }>`
   font-size: ${({ theme }) => theme.fontSize.body};
+  font-weight: 300;
   color: ${({ theme, $active }) =>
     $active ? theme.colors.white : theme.colors.lightGray};
   transition: all 0.25s ease;

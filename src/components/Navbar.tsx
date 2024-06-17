@@ -15,7 +15,7 @@ const Navbar = () => {
       <Links>
         <ButtonLink
           to={list}
-          label="Your list"
+          label="List"
           active={location.pathname === list}
         />
         <ButtonLink

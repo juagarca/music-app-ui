@@ -10,10 +10,15 @@ import { updateTrackListened } from "../api";
 
 interface TrackCardProps {
   track: ITrack;
+  minimal?: boolean;
   border?: boolean;
 }
 
-const TrackRow = ({ track, border = true }: TrackCardProps) => {
+const TrackRow = ({
+  track,
+  minimal = false,
+  border = true,
+}: TrackCardProps) => {
   const { _id, name, number, duration, featuring, listened } = track;
   const [isListened, setIsListened] = useState(listened);
 
@@ -32,7 +37,8 @@ const TrackRow = ({ track, border = true }: TrackCardProps) => {
     <TrackRowWrapper $border={border}>
       <TrackRowDetails>
         <Text>
-          {number} - {name} - {formatSeconds(duration)}
+          {number} - {name}
+          {!minimal && ` - ${formatSeconds(duration)}`}
         </Text>
         {featuring && <FeaturingRow featuring={featuring} />}
       </TrackRowDetails>
@@ -50,6 +56,7 @@ const TrackRowWrapper = styled.div<{ $border: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-align: left;
   padding: ${({ theme }) => theme.margin.default} 0;
   border-bottom: ${({ theme, $border }) =>
     $border ? `1px solid ${theme.colors.lightGray}` : "none"};
