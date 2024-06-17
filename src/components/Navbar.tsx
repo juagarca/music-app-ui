@@ -7,21 +7,26 @@ import ROUTES from "../routes";
 
 const Navbar = () => {
   const location = useLocation();
-  const { artists, list } = ROUTES;
+  const { artists, list, upcoming } = ROUTES;
 
   return (
     <NavbarWrapper>
       <Logo size="h6">Music App</Logo>
       <Links>
         <ButtonLink
+          to={artists}
+          label="Artists"
+          active={location.pathname === artists}
+        />
+        <ButtonLink
           to={list}
           label="List"
           active={location.pathname === list}
         />
         <ButtonLink
-          to={artists}
-          label="Artists"
-          active={location.pathname === artists}
+          to={upcoming}
+          label="Upcoming"
+          active={location.pathname === upcoming}
         />
         <ButtonLink to={artists}>
           <Avatar />

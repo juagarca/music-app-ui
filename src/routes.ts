@@ -5,6 +5,7 @@ const ROUTES = {
   list: "/list",
   release: "/releases/:releaseId",
   releases: "/releases",
+  upcoming: "/upcoming",
 };
 
 export default ROUTES;
