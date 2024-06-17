@@ -17,15 +17,14 @@ const TrackRow = ({ track, border = true }: TrackCardProps) => {
   const { _id, name, number, duration, featuring, listened } = track;
   const [isListened, setIsListened] = useState(listened);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.currentTarget.blur();
 
-    if (isListened) {
-      updateTrackListened(_id, false);
-      setIsListened(false);
-    } else {
-      updateTrackListened(_id, true);
-      setIsListened(true);
+    try {
+      await updateTrackListened(_id!, !isListened);
+      setIsListened(!isListened);
+    } catch (error) {
+      alert(error);
     }
   };
 

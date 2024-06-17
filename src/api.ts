@@ -9,7 +9,7 @@ const apiCall = async <Type>(path: string, verb: string = "get") => {
     const response = await axios.request<Type>({ url: url, method: verb });
     return response.data;
   } catch (error) {
-    console.error(error);
+    throw new Error(String(error));
   }
 };
 

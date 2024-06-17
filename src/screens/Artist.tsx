@@ -35,21 +35,20 @@ const Artist = () => {
     artistData && setIsFollowed(artistData.followed);
   }, [artistData]);
 
+  const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.currentTarget.blur();
+
+    try {
+      await updateArtistFollowed(artistId!, !isFollowed);
+      setIsFollowed(!isFollowed);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   if (artistIsLoading || releasesIsLoading) return <div>Loading...</div>;
   if (artistError || releasesError || !artistData || !releasesData)
     return <div>Error!</div>;
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.currentTarget.blur();
-
-    if (isFollowed) {
-      updateArtistFollowed(artistId!, false);
-      setIsFollowed(false);
-    } else {
-      updateArtistFollowed(artistId!, true);
-      setIsFollowed(true);
-    }
-  };
 
   const { photoUrl, artistName, name, dateOfBirth, placeOfBirth, bio } =
     artistData;
