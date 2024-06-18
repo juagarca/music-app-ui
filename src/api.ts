@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { IArtist, IListRelease, IRelease, ITrack } from "./types";
+import { IArtist, IRelease, ITrack } from "./types";
 
 const apiCall = async <Type>(path: string, verb: string = "get") => {
   const url = `${process.env.REACT_APP_API_URL}/${path}`;
@@ -35,16 +35,16 @@ const fetchReleases = async (artistId: string) => {
 
 const fetchPendingReleases = async () => {
   const path = `releases/pending`;
-  return apiCall<IListRelease[]>(path);
+  return apiCall<IRelease[]>(path);
 };
 
 const fetchUpcomingReleases = async () => {
   const path = `releases/upcoming`;
-  return apiCall<IListRelease[]>(path);
+  return apiCall<IRelease[]>(path);
 };
 
 const fetchTracks = async (releaseId: string) => {
-  const path = `tracks?releaseId=${releaseId}`;
+  const path = `releases/${releaseId}/tracks`;
   return apiCall<ITrack[]>(path);
 };
 
@@ -53,8 +53,12 @@ const updateArtistFollowed = async (artistId: string, followed: boolean) => {
   return apiCall<IArtist>(path, "patch");
 };
 
-const updateTrackListened = async (trackId: string, listened: boolean) => {
-  const path = `tracks/${trackId}?listened=${listened}`;
+const updateTrackListened = async (
+  releaseId: string,
+  trackId: string,
+  listened: boolean
+) => {
+  const path = `releases/${releaseId}/tracks/${trackId}?listened=${listened}`;
   return apiCall<ITrack>(path, "patch");
 };
 

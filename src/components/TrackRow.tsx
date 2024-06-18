@@ -9,12 +9,14 @@ import { formatSeconds } from "../utils";
 import { updateTrackListened } from "../api";
 
 interface TrackCardProps {
+  releaseId: string;
   track: ITrack;
   minimal?: boolean;
   border?: boolean;
 }
 
 const TrackRow = ({
+  releaseId,
   track,
   minimal = false,
   border = true,
@@ -26,7 +28,7 @@ const TrackRow = ({
     event.currentTarget.blur();
 
     try {
-      await updateTrackListened(_id!, !isListened);
+      await updateTrackListened(releaseId, _id, !isListened);
       setIsListened(!isListened);
     } catch (error) {
       alert(error);

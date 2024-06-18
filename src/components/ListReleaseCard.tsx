@@ -6,18 +6,19 @@ import { Button, ButtonLink, Heading, Text, TrackRow } from ".";
 import { ArrowFromSquare, ChevronDown, ChevronUp } from "../icons";
 import releaseImage from "../assets/release.png";
 
-import { IListRelease, ITrack } from "../types";
+import { IRelease, ITrack } from "../types";
 import { formatDate } from "../utils";
 import ROUTES from "../routes";
 
 interface ListReleaseCardProps {
-  release: IListRelease;
+  release: IRelease;
 }
 
 const ListReleaseCard = ({ release }: ListReleaseCardProps) => {
   const [expanded, setExpanded] = useState<boolean>(false);
   const navigate = useNavigate();
-  const { _id, name, artistId, artistName, releaseDate, photoUrl } = release;
+  const { _id, name, artistId, artistName, releaseDate, photoUrl, tracks } =
+    release;
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.currentTarget.blur();
@@ -58,11 +59,12 @@ const ListReleaseCard = ({ release }: ListReleaseCardProps) => {
       </ReleaseCardWrapper>
       {expanded && (
         <PendingTracksWrapper $expanded={expanded}>
-          {release.tracks.map((track: ITrack, index: number) => (
+          {tracks?.map((track: ITrack, index: number) => (
             <TrackRow
+              releaseId={_id}
               track={track}
               key={track.number}
-              border={index !== release.tracks.length - 1}
+              border={index !== tracks.length - 1}
               minimal
             />
           ))}

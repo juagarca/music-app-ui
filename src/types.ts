@@ -1,20 +1,17 @@
 interface IArtist {
   _id: string;
   artistName: string;
-  followed: boolean;
   name?: string;
   dateOfBirth?: string;
   placeOfBirth?: string;
   bio?: string;
   members?: string[];
   photoUrl?: string;
-}
-
-interface IListRelease extends IRelease {
-  tracks: ITrack[];
+  followed: boolean;
 }
 
 interface IFeaturingArtist {
+  _id: string;
   artistId: string;
   artistName: string;
 }
@@ -22,18 +19,17 @@ interface IFeaturingArtist {
 interface IRelease {
   _id: string;
   name: string;
-  artistId: string;
+  artistId?: string;
   artistName: string;
   type: "ALBUM" | "EP" | "MIXTAPE" | "SINGLE";
   releaseDate?: string;
   duration?: number;
-  numberOfTracks?: number;
   photoUrl?: string;
+  tracks?: ITrack[];
 }
 
 interface ITrack {
   _id: string;
-  releaseId: string;
   name: string;
   number: number;
   duration: number;
@@ -41,4 +37,4 @@ interface ITrack {
   featuring?: IFeaturingArtist[];
 }
 
-export type { IArtist, IListRelease, IFeaturingArtist, IRelease, ITrack };
+export type { IArtist, IFeaturingArtist, IRelease, ITrack };

@@ -5,10 +5,10 @@ import styled from "styled-components";
 import { ReleaseCard } from "../components";
 
 import { fetchUpcomingReleases } from "../api";
-import { IListRelease } from "../types";
+import { IRelease } from "../types";
 
 const List = () => {
-  const [upcomingList, setUpcomingList] = useState<IListRelease[]>();
+  const [upcomingList, setUpcomingList] = useState<IRelease[]>();
 
   const {
     data: upcomingReleasesData,
@@ -32,9 +32,11 @@ const List = () => {
 
   return (
     <UpcomingWrapper>
-      {upcomingList.map((release) => (
-        <ReleaseCard key={release._id} release={release} />
-      ))}
+      <UpcomingListWrapper>
+        {upcomingList.map((release) => (
+          <ReleaseCard key={release._id} release={release} />
+        ))}
+      </UpcomingListWrapper>
     </UpcomingWrapper>
   );
 };
@@ -43,6 +45,12 @@ const UpcomingWrapper = styled.div`
   width: 496px;
   margin: 0 auto;
   padding: ${({ theme }) => theme.margin.default};
+`;
+
+const UpcomingListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
 export default List;

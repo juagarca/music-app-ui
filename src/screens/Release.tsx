@@ -39,7 +39,7 @@ const Release = () => {
   if (!releaseId || !releaseData || !tracksData || releaseError || tracksError)
     return <div>Error!</div>;
 
-  const { name, artistId, artistName, releaseDate, duration, numberOfTracks } =
+  const { name, artistId, artistName, releaseDate, duration, tracks } =
     releaseData;
 
   return (
@@ -58,9 +58,9 @@ const Release = () => {
           </Text>
           {duration && (
             <Text>
-              {`${numberOfTracks} ${pluralize(
+              {`${tracks?.length} ${pluralize(
                 "song",
-                numberOfTracks
+                tracks?.length
               )} - ${formatSeconds(duration)}`}{" "}
             </Text>
           )}
@@ -72,8 +72,9 @@ const Release = () => {
         <ReleaseTracks>
           {tracksData.map((track: ITrack) => (
             <TrackRow
+              releaseId={releaseId}
               track={track}
-              border={track.number !== numberOfTracks}
+              border={track.number !== tracksData.length}
               key={track.number}
             />
           ))}

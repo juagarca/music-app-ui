@@ -5,10 +5,10 @@ import styled from "styled-components";
 import { ListReleaseCard } from "../components";
 
 import { fetchPendingReleases } from "../api";
-import { IListRelease } from "../types";
+import { IRelease } from "../types";
 
 const List = () => {
-  const [pendingList, setPendingList] = useState<IListRelease[]>();
+  const [pendingList, setPendingList] = useState<IRelease[]>();
   const {
     data: pendingReleasesData,
     isLoading: pendingReleasesIsLoading,
